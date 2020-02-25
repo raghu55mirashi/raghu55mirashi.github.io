@@ -20,7 +20,6 @@ export default class Education extends Component {
                 this.setState({
                     records: data
                 })
-                // console.log(records);
             })
 
     }
