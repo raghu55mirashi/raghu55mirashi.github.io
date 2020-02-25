@@ -4,11 +4,11 @@ import { faBlog, faUser } from '@fortawesome/free-solid-svg-icons'
 
 class AboutMe extends Component {
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
-            records: [],
-        },
-            this.fetch_data = this.fetch_data.bind(this)
+            records: []
+        }
+        this.fetch_data = this.fetch_data.bind(this)
     }
 
     componentDidMount() {
@@ -95,7 +95,8 @@ class AboutMe extends Component {
                         </div>
                         <br />
                     </div>
-                ))
+                )
+                )
                 }
             </React.Fragment>
         );

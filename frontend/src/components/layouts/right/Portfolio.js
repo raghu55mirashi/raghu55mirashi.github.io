@@ -4,11 +4,11 @@ import { faUser, faClock, faCogs } from '@fortawesome/free-solid-svg-icons'
 
 export default class Portfolio extends Component {
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
             records: []
-        },
-            this.fetchdata = this.fetchdata.bind(this)
+        }
+        this.fetchdata = this.fetchdata.bind(this)
     }
     componentWillMount() {
         this.fetchdata()
@@ -32,7 +32,6 @@ export default class Portfolio extends Component {
                     </h1>
                     <hr style={{ width: "200px" }} />
                     {items.map((item, id) => (
-
                         <div key={id} className="card" style={{ marginBottom: "15px", boxShadow: "0 5px 11px #ccc" }}>
                             <div className="card-header" style={{ paddingBottom: 0, paddingTop: "5px" }}>
 
@@ -82,8 +81,7 @@ export default class Portfolio extends Component {
                                 </div>
                             </div>
                         </div>
-                    )
-                    )}
+                    ))}
                 </div>
             </React.Fragment>
         )

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDownload } from '@fortawesome/free-solid-svg-icons'
 import image from '../../../../src/me.JPG'
-import About from '../right/AboutMe'
+// import About from '../right/AboutMe'
 
 export default class LeftPane extends Component {
     render() {

@@ -4,11 +4,11 @@ import { faStar } from '@fortawesome/free-solid-svg-icons'
 
 export default class Skills extends Component {
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
             records: []
-        },
-            this.fetchdata = this.fetchdata.bind(this)
+        }
+        this.fetchdata = this.fetchdata.bind(this)
     }
     componentWillMount() {
         this.fetchdata()
@@ -35,12 +35,10 @@ export default class Skills extends Component {
                                 <table className="table">
                                     <tbody>
                                         <tr>
-
                                             <td>
                                                 <h6>{item.subject}</h6>
                                                 <p>{item.stars}</p>
                                             </td>
-
                                             <br />
                                         </tr>
                                     </tbody>

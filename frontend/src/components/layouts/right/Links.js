@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
-import { SocialIcon } from 'react-social-icons';
+import React, { Component } from 'react'
+import { SocialIcon } from 'react-social-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLink } from '@fortawesome/free-solid-svg-icons'
 
 
 export default class Links extends Component {
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
-            records: [],
-        },
-            this.fetchdata = this.fetchdata.bind(this)
+            records: []
+        }
+        this.fetchdata = this.fetchdata.bind(this)
     }
     componentWillMount() {
         this.fetchdata()
@@ -36,10 +36,10 @@ export default class Links extends Component {
                         <div className="card-body" style={{ textAlign: 'center', paddingTop: '50px' }}>
                             {items.map((item, id) => (
                                 <span key={id}>
-                                    <SocialIcon url={item.site_url} />{' '}
+                                    <SocialIcon url={item.site_url} />
                                 </span>
-                            ))
-                            }
+                            )
+                            )}
                             <br /><br />
                             <hr style={{ width: '150px' }}></hr>
                         </div>
