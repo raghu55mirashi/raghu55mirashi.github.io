@@ -33,18 +33,16 @@ export default class Education extends Component {
                         <div className="card-header"><FontAwesomeIcon icon={faGraduationCap} />&nbsp;EDUCATION</div>
                         <span>
                             {
-                                items.map(function (item, id) {
-                                    return (
-                                        <div key={id} className="card-body" style={{ paddingBottom: "0" }}>
-                                            <div className="header1">
-                                                <h6><span>{item.degree} </span>- {item.course}</h6>
-                                                <p><i className="far fa-calendar"></i>&nbsp;{item.pass_year}</p>
-                                                Completed my {item.degree} |  from {' '}
-                                                <h6>{item.university}</h6>
-                                            </div>
-                                            <hr />
-                                        </div>);
-                                })
+                                items.map((item, id) => (
+                                    <div key={id} className="card-body" style={{ paddingBottom: "0" }}>
+                                        <div className="header1">
+                                            <h6><span>{item.degree} </span>- {item.course}</h6>
+                                            <p><i className="far fa-calendar"></i>&nbsp;{item.pass_year}</p>
+                                            Completed my {item.degree} |  from {' '}
+                                            <h6>{item.university}</h6>
+                                        </div>
+                                        <hr />
+                                    </div>))
                             }
                         </span>
                     </div>

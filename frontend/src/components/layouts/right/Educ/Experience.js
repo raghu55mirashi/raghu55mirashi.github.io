@@ -32,19 +32,18 @@ export default class Experience extends Component {
                     <div className="card" style={{ boxShadow: "0 5px 11px #ccc", overflow: 'auto' }}>
                         <div className="card-header">
                             <FontAwesomeIcon icon={faTasks} />&nbsp;EXPERIENCE</div>
-                        {items.map((item, id) => {
-                            return (
-                                <div key={id} className="card-body" style={{ paddingBottom: 0 }}>
-                                    <div className="header1">
-                                        <h6><span>{item.designation} </span>- {item.company}</h6>
-                                        <p><FontAwesomeIcon icon={faCalendar} />&nbsp;{item.duration}</p>
-                                        {item.summary}
-                                        <h6> {item.technology}</h6>
-                                    </div>
-                                    <hr />
+                        {items.map((item, id) => (
+                            <div key={id} className="card-body" style={{ paddingBottom: 0 }}>
+                                <div className="header1">
+                                    <h6><span>{item.designation} </span>- {item.company}</h6>
+                                    <p><FontAwesomeIcon icon={faCalendar} />&nbsp;{item.duration}</p>
+                                    {item.summary}
+                                    <h6> {item.technology}</h6>
                                 </div>
-                            );
-                        })}
+                                <hr />
+                            </div>
+                        ))
+                        }
                     </div>
                 </div>
             </React.Fragment>

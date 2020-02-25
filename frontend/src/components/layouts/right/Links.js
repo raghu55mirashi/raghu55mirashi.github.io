@@ -34,13 +34,11 @@ export default class Links extends Component {
                         <div className="card-header mylink-header">
                             <FontAwesomeIcon icon={faLink} />&nbsp;LINKS</div>
                         <div className="card-body" style={{ textAlign: 'center', paddingTop: '50px' }}>
-                            {items.map(function (item, id) {
-                                return (
-                                    <span key={id}>
-                                        <SocialIcon url={item.site_url} />{' '}
-                                    </span>
-                                )
-                            })
+                            {items.map((item, id) => (
+                                <span key={id}>
+                                    <SocialIcon url={item.site_url} />{' '}
+                                </span>
+                            ))
                             }
                             <br /><br />
                             <hr style={{ width: '150px' }}></hr>

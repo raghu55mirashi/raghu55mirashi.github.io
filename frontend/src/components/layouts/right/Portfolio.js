@@ -31,60 +31,59 @@ export default class Portfolio extends Component {
                         MY&nbsp;<span>PORTFOLIO</span>
                     </h1>
                     <hr style={{ width: "200px" }} />
-                    {items.map((item, id) => {
-                        return (
+                    {items.map((item, id) => (
 
-                            <div key={id} className="card" style={{ marginBottom: "15px", boxShadow: "0 5px 11px #ccc" }}>
-                                <div className="card-header" style={{ paddingBottom: 0, paddingTop: "5px" }}>
+                        <div key={id} className="card" style={{ marginBottom: "15px", boxShadow: "0 5px 11px #ccc" }}>
+                            <div className="card-header" style={{ paddingBottom: 0, paddingTop: "5px" }}>
 
-                                    <h5>{item.project_name}</h5>
-                                </div>
-                                <div className="card-body">
-                                    <div className="row">
-                                        <div className="col-lg-6 col-md-6">
-                                            <div className="project-img">
-                                                <img src="{item.image}" alt="no png" height="190px" width="270px" />
-                                            </div>
+                                <h5>{item.project_name}</h5>
+                            </div>
+                            <div className="card-body">
+                                <div className="row">
+                                    <div className="col-lg-6 col-md-6">
+                                        <div className="project-img">
+                                            <img src="{item.image}" alt="no png" height="190px" width="270px" />
                                         </div>
-                                        <div className="col-lg-6 col-md-6">
-                                            <table>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>
-                                                            <p>
-                                                                <FontAwesomeIcon icon={faUser} />&nbsp;<b>Client: {item.client}</b>
-                                                            </p>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <p>
-                                                                <FontAwesomeIcon icon={faClock} /><b> Duration: {item.duration}</b>
-                                                            </p>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <p>
-                                                                <FontAwesomeIcon icon={faCogs} /><b> Technologies: {item.technology}</b>
-                                                            </p>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <div className="port-btn">
-                                                                <a className="btn  btn1" style={{ backgroundColor: "#000", color: '#fff' }} href="#myModal">Preview</a>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                    </div>
+                                    <div className="col-lg-6 col-md-6">
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <p>
+                                                            <FontAwesomeIcon icon={faUser} />&nbsp;<b>Client: {item.client}</b>
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <p>
+                                                            <FontAwesomeIcon icon={faClock} /><b> Duration: {item.duration}</b>
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <p>
+                                                            <FontAwesomeIcon icon={faCogs} /><b> Technologies: {item.technology}</b>
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div className="port-btn">
+                                                            <a className="btn  btn1" style={{ backgroundColor: "#000", color: '#fff' }} href="#myModal">Preview</a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
-                        );
-                    })}
+                        </div>
+                    )
+                    )}
                 </div>
             </React.Fragment>
         )

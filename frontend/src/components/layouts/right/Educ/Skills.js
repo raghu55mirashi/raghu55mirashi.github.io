@@ -30,25 +30,24 @@ export default class Skills extends Component {
                 <div className="skills" style={{ boxShadow: "0 5px 11px #ccc", maxHeight: '75vh', overflow: 'auto' }}>
                     <div className="card" style={{ overflow: 'auto' }}>
                         <div className="card-header"><FontAwesomeIcon icon={faStar} />&nbsp;SKILLS</div>
-                        {items.map((item, id) => {
-                            return (
-                                <div key={id} className="card-body">
-                                    <table className="table">
-                                        <tbody>
-                                            <tr>
+                        {items.map((item, id) => (
+                            <div key={id} className="card-body">
+                                <table className="table">
+                                    <tbody>
+                                        <tr>
 
-                                                <td>
-                                                    <h6>{item.subject}</h6>
-                                                    <p>{item.stars}</p>
-                                                </td>
+                                            <td>
+                                                <h6>{item.subject}</h6>
+                                                <p>{item.stars}</p>
+                                            </td>
 
-                                                <br />
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            );
-                        })}
+                                            <br />
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        )
+                        )}
                     </div>
                 </div>
             </React.Fragment>
