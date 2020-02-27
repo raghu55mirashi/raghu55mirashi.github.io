@@ -14,6 +14,7 @@ SECRET_KEY = 'fxtwwg#3%tnlr&_#$qp$#1+d#7vty6-bb=mi4ewgsy5&htxu(s'
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
+# ALLOWED_HOSTS = ["djreact-portfolio.herokuapp.com"]
 
 
 # Application definition
@@ -46,7 +47,7 @@ ROOT_URLCONF = 'backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'frontend/build')],
+        'DIRS': [os.path.join(BASE_DIR, 'build')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -65,18 +66,28 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'djreact_portfolio',
+#         'USER': 'root',
+#         'PASSWORD': 'raghu123',
+#         'HOST': 'localhost',
+#         'PORT': '3306',
+#         'OPTIONS': {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"}
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'djreact_portfolio',
-        'USER': 'root',
-        'PASSWORD': 'raghu123',
-        'HOST': 'localhost',
-        'PORT': '3306',
-        'OPTIONS': {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"}
+        'NAME': os.environ['database-1'],
+        'USER': os.environ['admin'],
+        'PASSWORD': os.environ['apparao123'],
+        'HOST': os.environ['database-1.cc42lk1wqtdf.ap-south-1.rds.amazonaws.com'],
+        'PORT': os.environ['3306'],
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -117,8 +128,12 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'frontend/build/static')
+    os.path.join(BASE_DIR, 'build/static')
 ]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
 
