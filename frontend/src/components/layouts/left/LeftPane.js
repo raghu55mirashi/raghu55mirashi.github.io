@@ -10,16 +10,19 @@ export default class LeftPane extends Component {
 
         return (
             <React.Fragment>
-                <div className="container" style={{ padding: '5px', border: 'unset' }}>
-                    <div className="card" style={{ border: 'unset' }}>
-                        <div className="card-header" style={{ padding: 'unset', border: 'unset', backgroundColor: '#e9ecef' }}>
-                            <div className="leftPane-div">
-                                <img src={url + image} alt="me" className="rounded img-fluid" />
-                            </div>
+                {/* <div className="container" style={{ padding: '5px', border: 'unset' }}> */}
+                <div className="card" style={{ border: 'unset' }}>
+                    <div className="card-header" style={{ padding: 'unset', border: 'unset', backgroundColor: '#e9ecef' }}>
+                        <div className="leftPane-div">
+                            <img src={url + image} alt="me" className="rounded img-fluid" />
                         </div>
                     </div>
-                </div >
-            </React.Fragment>
+                </div>
+                {/* </div > */}
+                <div className="card current">
+                    <div className="card-header">Currently working on ReactJS, Django, DjangoRestFramework, Python, Bootstrap, Javascript</div>
+                </div>
+            </React.Fragment >
         )
     }
 }

@@ -75,6 +75,16 @@
   color: black;
 }
 
+.current {
+  padding: 15px;
+  margin-top: 10px;
+  background-color: #e9ecef !important;
+  border: 1px solid #fff !important;
+  box-sizing: border-box;
+}
+
+
+
 @media screen and (max-width: 844px) {
   .leftPane-div {
     width: 150px;
@@ -82,13 +92,12 @@
     margin: 0 auto;
   }
 
-  .leftbtncard {
+  .current {
     margin-top: 50px !important;
-    margin-bottom: -15px !important;
   }
 }
 
-.leftbtncard .card-header .btn1 {
+/* .leftbtncard .card-header .btn1 {
   background-color: #e9ecef;
   border: 1px solid #fff;
   padding: 6px 15px;
@@ -98,7 +107,7 @@
 
 .leftbtncard .card-header .btn1:hover {
   background-color: green;
-}
+} */
 
 /* left pane ends here */
 /* right layout/ eduexpskills.js starts here */

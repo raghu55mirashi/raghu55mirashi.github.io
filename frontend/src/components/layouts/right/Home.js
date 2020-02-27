@@ -19,7 +19,7 @@ export default class Home extends Component {
                         <br />
                         <Link to="/about" className="btn btn1" style={{ border: "1px solid #fff" }}><FontAwesomeIcon icon={faUser} />{' '}About Me</Link>{' '}
                         <a className="btn btn1" id="res" style={{ border: "1px solid #fff" }} href={url + item.resume}
-                            download target="_blank"><FontAwesomeIcon icon={faDownload} />{' '}My Resume</a>
+                            download target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faDownload} />{' '}My Resume</a>
                     </div>
                 )}
             </>
