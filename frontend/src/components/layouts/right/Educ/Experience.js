@@ -11,11 +11,11 @@ export default class Experience extends Component {
         }
         this.fetchdata = this.fetchdata.bind(this)
     }
-    componentWillMount() {
+    componentDidMount() {
         this.fetchdata()
     }
     fetchdata() {
-        fetch('http://127.0.0.1:8000/api/experience')
+        fetch(this.props.url + '/api/experience')
             .then(res => res.json())
             .then(data => {
                 this.setState({

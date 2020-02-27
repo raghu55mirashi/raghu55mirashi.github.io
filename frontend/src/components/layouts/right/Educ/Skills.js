@@ -10,11 +10,11 @@ export default class Skills extends Component {
         }
         this.fetchdata = this.fetchdata.bind(this)
     }
-    componentWillMount() {
+    componentDidMount() {
         this.fetchdata()
     }
     fetchdata() {
-        fetch('http://127.0.0.1:8000/api/skills')
+        fetch(this.props.url + '/api/skills')
             .then(res => res.json())
             .then(data => {
                 this.setState({
@@ -39,7 +39,7 @@ export default class Skills extends Component {
                                                 <h6>{item.subject}</h6>
                                                 <p>{item.stars}</p>
                                             </td>
-                                            <br />
+
                                         </tr>
                                     </tbody>
                                 </table>

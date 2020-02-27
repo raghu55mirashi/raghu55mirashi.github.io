@@ -1,27 +1,28 @@
 import React, { Component } from 'react'
-import { Route, BrowserRouter, Switch } from 'react-router-dom'
-// import { AboutMe } from './AboutMe'
-// import { Portfolio } from './Portfolio'
+import { Link } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUser, faDownload } from '@fortawesome/free-solid-svg-icons'
+
 
 export default class Home extends Component {
     render() {
+        var items = this.props.mydata
+
+        const url = this.props.url;
         return (
-            <React.Fragment>
-                <BrowserRouter>
-                    <Switch>
-                        <Route exact path="/" render={() => (
-                            <div className="home">
-                                <h1> Hi ! I'M RAGHAVENDRA</h1>
-                                <br />
-                                <h4> I'M WEB DEVELOPER</h4>
-                                <br />
-                                <a href="/about" className="btn btn1" style={{ backgroundColor: 'green' }}>About Me</a>{' '}
-                                <a href="/portfolio" className="btn btn1" style={{ border: '1px solid #fff' }}>Portfolio</a>
-                            </div>
-                        )} />
-                    </Switch>
-                </BrowserRouter>
-            </React.Fragment>
+            <>
+                {items.map((item, id) =>
+                    <div key={id} className="home">
+                        <h1> Hi ! I'M {item.firstname}</h1>
+                        <br />
+                        <h4> I'M {item.designation}</h4>
+                        <br />
+                        <Link to="/about" className="btn btn1" style={{ border: "1px solid #fff" }}><FontAwesomeIcon icon={faUser} />{' '}About Me</Link>{' '}
+                        <a className="btn btn1" id="res" style={{ border: "1px solid #fff" }} href={url + item.resume}
+                            download target="_blank"><FontAwesomeIcon icon={faDownload} />{' '}My Resume</a>
+                    </div>
+                )}
+            </>
         );
     }
 }

@@ -3,18 +3,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGraduationCap } from '@fortawesome/free-solid-svg-icons'
 
 export default class Education extends Component {
+
     constructor(props) {
         super(props)
         this.state = {
-            records: []
+            records: [],
         }
         this.fetchdata = this.fetchdata.bind(this)
     }
-    componentWillMount() {
+    componentDidMount() {
         this.fetchdata()
     }
+
     fetchdata() {
-        fetch('http://127.0.0.1:8000/api/education')
+        fetch(this.props.url + '/api/education')
             .then(res => res.json())
             .then(data => {
                 this.setState({
@@ -32,7 +34,7 @@ export default class Education extends Component {
                         <div className="card-header"><FontAwesomeIcon icon={faGraduationCap} />&nbsp;EDUCATION</div>
                         <span>
                             {
-                                items.map((item, id) => (
+                                items.map((item, id) =>
                                     <div key={id} className="card-body" style={{ paddingBottom: "0" }}>
                                         <div className="header1">
                                             <h6><span>{item.degree} </span>- {item.course}</h6>
@@ -41,7 +43,7 @@ export default class Education extends Component {
                                             <h6>{item.university}</h6>
                                         </div>
                                         <hr />
-                                    </div>))
+                                    </div>)
                             }
                         </span>
                     </div>

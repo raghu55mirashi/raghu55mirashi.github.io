@@ -10,11 +10,11 @@ export default class Portfolio extends Component {
         }
         this.fetchdata = this.fetchdata.bind(this)
     }
-    componentWillMount() {
+    componentDidMount() {
         this.fetchdata()
     }
     fetchdata() {
-        fetch("http://127.0.0.1:8000/api/projects")
+        fetch(this.props.url + "/api/projects")
             .then(response => response.json())
             .then(data => {
                 this.setState({

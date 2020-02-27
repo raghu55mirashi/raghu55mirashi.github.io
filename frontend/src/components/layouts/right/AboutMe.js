@@ -2,30 +2,10 @@ import React, { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBlog, faUser } from '@fortawesome/free-solid-svg-icons'
 
-class AboutMe extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            records: []
-        }
-        this.fetch_data = this.fetch_data.bind(this)
-    }
-
-    componentDidMount() {
-        this.fetch_data()
-    }
-
-    fetch_data() {
-        fetch('http://127.0.0.1:8000/api/personaldata')
-            .then(res => res.json())
-            .then(data => {
-                this.setState({
-                    records: data
-                })
-            })
-    }
+export default class AboutMe extends Component {
     render() {
-        var items = this.state.records
+        var items = this.props.mydata
+
         return (
             <React.Fragment>
                 {items.map((item, index) => (
@@ -102,6 +82,3 @@ class AboutMe extends Component {
         );
     }
 }
-
-
-export default AboutMe

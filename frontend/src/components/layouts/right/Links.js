@@ -12,11 +12,11 @@ export default class Links extends Component {
         }
         this.fetchdata = this.fetchdata.bind(this)
     }
-    componentWillMount() {
+    componentDidMount() {
         this.fetchdata()
     }
     fetchdata() {
-        fetch('http://127.0.0.1:8000/api/mylinks')
+        fetch(this.props.url + '/api/mylinks')
             .then(res => res.json())
             .then(data => {
                 this.setState({
@@ -36,7 +36,7 @@ export default class Links extends Component {
                         <div className="card-body" style={{ textAlign: 'center', paddingTop: '50px' }}>
                             {items.map((item, id) => (
                                 <span key={id}>
-                                    <SocialIcon url={item.site_url} />
+                                    <SocialIcon url={item.site_url} />{' '}
                                 </span>
                             )
                             )}
