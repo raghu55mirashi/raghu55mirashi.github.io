@@ -6,7 +6,7 @@ export default class LeftPane extends Component {
         var image = items.map(item => {
             return item.image
         })
-        const url = this.props.url;
+        const url = this.props.urls;
 
         return (
             <React.Fragment>

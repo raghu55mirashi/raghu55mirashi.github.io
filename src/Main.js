@@ -50,7 +50,7 @@ export default class Main extends Component {
                     </span>
                     <div className="row">
                         <div className="col-lg-3 col-md-3 col-sm-12">
-                            <LeftPane mydata={records} url={url} />
+                            <LeftPane mydata={records} urls={url} />
                         </div>
                         <div className="col-lg-9 col-md-9 col-sm-12">
                             <div className="container" style={{ padding: '5px' }}>
@@ -58,22 +58,22 @@ export default class Main extends Component {
                                     <div className="card-header app-header" style={CardhColor}>
                                         <Switch>
                                             <Route exact path='/'>
-                                                <Home mydata={records} url={url} />
+                                                <Home mydata={records} urls={url} />
                                             </Route>
                                             <Route path="/eduskill">
-                                                <EduExpSkill url={url} />
+                                                <EduExpSkill urls={url} />
                                             </Route>
                                             <Route path="/links">
-                                                <Links url={url} />
+                                                <Links urls={url} />
                                             </Route>
                                             <Route path="/contact">
-                                                <ContactMe url={url} />
+                                                <ContactMe urls={url} />
                                             </Route>
                                             <Route path="/about">
                                                 <AboutMe mydata={records} />
                                             </Route>
                                             <Route path="/portfolio">
-                                                <Portfolio url={url} />
+                                                <Portfolio urls={url} />
                                             </Route>
                                         </Switch>
                                     </div>

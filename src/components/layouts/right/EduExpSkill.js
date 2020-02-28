@@ -8,7 +8,7 @@ import { faGraduationCap, faTasks, faStar } from '@fortawesome/free-solid-svg-ic
 
 export default class EduExpSkill extends Component {
     render() {
-        const { url } = this.props;
+        const { urls } = this.props;
         return (
             <React.Fragment>
                 <Router>
@@ -28,13 +28,13 @@ export default class EduExpSkill extends Component {
                                 <div className="can-education" >
                                     <Switch>
                                         <Route path="/eduskill">
-                                            <Education url={url} />
+                                            <Education url={urls} />
                                         </Route>
                                         <Route path="/edu/experience">
-                                            <Experience url={url} />
+                                            <Experience url={urls} />
                                         </Route>
                                         <Route path="/edu/skills">
-                                            <Skills url={url} />
+                                            <Skills url={urls} />
                                         </Route>
                                     </Switch>
                                 </div>
