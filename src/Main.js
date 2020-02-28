@@ -17,7 +17,7 @@ export default class Main extends Component {
         super(props)
         this.state = {
             records: [],
-            url: 'https://djreact-portfolio.herokuapp.com/' //this url is used by all files to fetch api
+            url: 'https://djreact-portfolio.herokuapp.com' //this url is used by all files to fetch api
             // url: 'http://127.0.0.1:8000' //this url is used by all files to fetch api
         }
         this.fetch_data = this.fetch_data.bind(this)
