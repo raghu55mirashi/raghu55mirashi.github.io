@@ -70,7 +70,7 @@ export default class AboutMe extends Component {
                         </table>
 
                         <div className="about-btn">
-                            <a className="btn  btn1" href="https://learn-byweb.blogspot.com/" style={{ padding: "6px 15px", marginBottom: "-5px", backgroundColor: 'black', color: '#fff' }}>
+                            <a className="btn  btn1" href={item.blog_url} style={{ padding: "6px 15px", marginBottom: "-5px", backgroundColor: 'black', color: '#fff' }}>
                                 <FontAwesomeIcon icon={faBlog} />&nbsp;My Blog </a>
                         </div>
                         <br />

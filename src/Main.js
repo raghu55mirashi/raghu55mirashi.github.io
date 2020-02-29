@@ -67,7 +67,7 @@ export default class Main extends Component {
                                                 <Links urls={url} />
                                             </Route>
                                             <Route path="/contact">
-                                                <ContactMe urls={url} mydata={records}/>
+                                                <ContactMe urls={url} mydata={records} />
                                             </Route>
                                             <Route path="/about">
                                                 <AboutMe mydata={records} />

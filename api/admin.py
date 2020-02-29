@@ -1,11 +1,12 @@
 from django.contrib import admin
 from django.contrib.admin import ModelAdmin
-from .models import PersonalData, ContactUs, Education, Experience, Projects, Skills, MyLinks
+from .models import (PersonalData, ContactUs, Education, Experience,
+                     Projects, Skills, MyLinks)
 
 
 class ModelPersonalData(ModelAdmin):
     list_display = ('firstname', 'lastname', 'address', 'dateofbirth', 'designation',
-                    'email', 'nationality', 'phone', 'spk_lng', 'summary', 'image', 'resume')
+                    'email', 'phone', 'blog_url', 'latest_tech', 'summary', 'image', 'resume')
 
 
 class ModelContactUs(ModelAdmin):

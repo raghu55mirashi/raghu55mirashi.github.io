@@ -12,6 +12,8 @@ class PersonalData(models.Model):
     phone = models.CharField(max_length=100)
     spk_lng = models.CharField(max_length=50)
     summary = models.TextField()
+    blog_url = models.URLField(max_length=200)
+    latest_tech = models.TextField(default=None)
     image = models.ImageField(upload_to="pic")
     resume = models.FileField(upload_to="resume")
 
