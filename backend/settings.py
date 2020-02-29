@@ -4,21 +4,17 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'fxtwwg#3%tnlr&_#$qp$#1+d#7vty6-bb=mi4ewgsy5&htxu(s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
-# ALLOWED_HOSTS = ["djreact-portfolio.herokuapp.com"]
+
+ALLOWED_HOSTS = ["djreact-portfolio.herokuapp.com", "127.0.0.1"]
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -67,29 +63,30 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'djreact_portfolio',
+        'USER': 'root',
+        'PASSWORD': 'raghu123',
+        'HOST': 'localhost',
+        'PORT': '3306',
+        'OPTIONS': {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"}
+    }
+}
+
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'djreact_portfolio',
-#         'USER': 'root',
-#         'PASSWORD': 'raghu123',
-#         'HOST': 'localhost',
+#         'NAME': 'portfolio',
+#         'USER': 'admin',
+#         'PASSWORD': 'apparao123',
+#         'HOST': 'database-1.cc42lk1wqtdf.ap-south-1.rds.amazonaws.com',
 #         'PORT': '3306',
 #         'OPTIONS': {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"}
 #     }
 # }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'portfolio',
-        'USER': 'admin',
-        'PASSWORD': 'apparao123',
-        'HOST': 'database-1.cc42lk1wqtdf.ap-south-1.rds.amazonaws.com',
-        'PORT': '3306',
-        'OPTIONS': {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"}
-    }
-}
 
 # DATABASES = {
 #     'default': {
@@ -122,7 +119,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 

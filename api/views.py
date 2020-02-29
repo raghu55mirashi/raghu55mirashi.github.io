@@ -1,9 +1,19 @@
 from rest_framework.decorators import api_view
+from rest_framework.generics import CreateAPIView
 from rest_framework.response import Response
-from .serializers import PersonalDataSerializer,\
-    ContactUsSerializer, EducationSerializer, ExperienceSerializer,\
-    ProjectsSerializer, SkillsSerializer, MyLinksSerializer
-from .models import PersonalData, ContactUs, Education, Experience, Projects, Skills, MyLinks
+from .serializers import (PersonalDataSerializer, ContactUsSerializer,
+                          EducationSerializer, ExperienceSerializer,
+                          ProjectsSerializer, SkillsSerializer,
+                          MyLinksSerializer)
+from .models import (PersonalData, ContactUs, Education,
+                     Experience, Projects, Skills, MyLinks)
+
+# this api created seperately for create--anothor method of api creation
+
+
+class Contactusview(CreateAPIView):
+    queryset = ContactUs.objects.all()
+    serializer_class = ContactUsSerializer
 
 
 @api_view(['GET'])
@@ -12,16 +22,6 @@ def personaldataview(request):
         records = PersonalData.objects.all()
         serializer = PersonalDataSerializer(records, many=True)
         return Response(serializer.data)
-
-
-@api_view(['POST'])
-def contactusview(request):
-    if request.method == 'GET':
-        records = ContactUs.objects.all()
-        serializer = ContactUsSerializer(records, many=True)
-        return Response(serializer.data)
-    if request.method == 'POST':
-        pass
 
 
 @api_view(['GET'])

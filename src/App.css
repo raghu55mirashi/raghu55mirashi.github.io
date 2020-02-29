@@ -324,6 +324,11 @@ input[type='email'] {
   overflow: auto !important;
 }
 
+@media(max-width: 990px){
+  .contact .address {
+    margin-top: unset;
+  }
+}
 /* contact ends here */
 
 /* education starts */

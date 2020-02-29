@@ -1,4 +1,5 @@
-from .models import PersonalData, ContactUs, Education, Experience, Projects, Skills, MyLinks
+from .models import (PersonalData, ContactUs, Education,
+                     Experience, Projects, Skills, MyLinks)
 from rest_framework.serializers import ModelSerializer
 
 
@@ -10,7 +11,7 @@ class PersonalDataSerializer(ModelSerializer):
 
 class ContactUsSerializer(ModelSerializer):
     class Meta:
-        modela = ContactUs
+        model = ContactUs
         fields = '__all__'
 
 
