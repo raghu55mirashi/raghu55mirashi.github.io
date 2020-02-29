@@ -18,9 +18,9 @@ export default class EduExpSkill extends Component {
                                 <div className="bottons">
                                     <Link to="/eduskill" className=" btn edu-btn edu-bt1">
                                         <FontAwesomeIcon icon={faGraduationCap} />&nbsp;EDUCATION </Link>
-                                    <Link to="/edu/experience" className="btn edu-btn edu-bt2">
+                                    <Link to="/experience" className="btn edu-btn edu-bt2">
                                         <FontAwesomeIcon icon={faTasks} />&nbsp;EXPERIENCE</Link>
-                                    <Link to="/edu/skills" className="btn edu-btn edu-bt3">
+                                    <Link to="/skills" className="btn edu-btn edu-bt3">
                                         <FontAwesomeIcon icon={faStar} />&nbsp;SKILLS</Link>
                                 </div>
                             </div>
@@ -30,10 +30,10 @@ export default class EduExpSkill extends Component {
                                         <Route path="/eduskill">
                                             <Education url={urls} />
                                         </Route>
-                                        <Route path="/edu/experience">
+                                        <Route path="/experience">
                                             <Experience url={urls} />
                                         </Route>
-                                        <Route path="/edu/skills">
+                                        <Route path="/skills">
                                             <Skills url={urls} />
                                         </Route>
                                     </Switch>

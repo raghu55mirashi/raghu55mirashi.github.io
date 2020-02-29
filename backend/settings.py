@@ -87,6 +87,7 @@ DATABASES = {
         'PASSWORD': 'apparao123',
         'HOST': 'database-1.cc42lk1wqtdf.ap-south-1.rds.amazonaws.com',
         'PORT': '3306',
+        'OPTIONS': {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"}
     }
 }
 
@@ -147,6 +148,8 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
-CORS_ORIGIN_WHITELIST = [
-    "http://localhost:3000",
-]
+CORS_ORIGIN_ALLOW_ALL = True
+
+# CORS_ORIGIN_WHITELIST = [
+#     "http://localhost:3000",
+# ]

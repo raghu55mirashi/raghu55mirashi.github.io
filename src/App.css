@@ -184,7 +184,7 @@
 }
 
 .about table tr td {
-  padding: 0 12px;
+  padding: 0 25px;
 }
 
 .about table {
@@ -214,6 +214,11 @@
 @media screen and (max-width: 844px) {
   .about {
     padding: 10px;
+    height: 100%;
+  }
+
+  .about table {
+    display: block;
   }
 }
 

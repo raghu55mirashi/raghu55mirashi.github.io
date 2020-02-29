@@ -14,12 +14,14 @@ def personaldataview(request):
         return Response(serializer.data)
 
 
-@api_view(['GET'])
+@api_view(['POST'])
 def contactusview(request):
     if request.method == 'GET':
         records = ContactUs.objects.all()
         serializer = ContactUsSerializer(records, many=True)
         return Response(serializer.data)
+    if request.method == 'POST':
+        pass
 
 
 @api_view(['GET'])
