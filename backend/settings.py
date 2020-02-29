@@ -8,7 +8,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'fxtwwg#3%tnlr&_#$qp$#1+d#7vty6-bb=mi4ewgsy5&htxu(s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 
 ALLOWED_HOSTS = ["djreact-portfolio.herokuapp.com", "127.0.0.1"]
@@ -63,29 +63,29 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'djreact_portfolio',
-        'USER': 'root',
-        'PASSWORD': 'raghu123',
-        'HOST': 'localhost',
-        'PORT': '3306',
-        'OPTIONS': {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"}
-    }
-}
-
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'portfolio',
-#         'USER': 'admin',
-#         'PASSWORD': 'apparao123',
-#         'HOST': 'database-1.cc42lk1wqtdf.ap-south-1.rds.amazonaws.com',
+#         'NAME': 'djreact_portfolio',
+#         'USER': 'root',
+#         'PASSWORD': 'raghu123',
+#         'HOST': 'localhost',
 #         'PORT': '3306',
 #         'OPTIONS': {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"}
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'portfolio',
+        'USER': 'admin',
+        'PASSWORD': 'apparao123',
+        'HOST': 'database-1.cc42lk1wqtdf.ap-south-1.rds.amazonaws.com',
+        'PORT': '3306',
+        'OPTIONS': {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"}
+    }
+}
 
 
 # DATABASES = {
