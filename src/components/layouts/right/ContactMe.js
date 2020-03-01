@@ -4,9 +4,9 @@ import { faEnvelopeOpen, faMapMarkerAlt, faMobileAlt } from '@fortawesome/free-s
 
 
 export default class ContactMe extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
-        this.state={
+        this.state = {
             success: false
         }
     }
@@ -29,14 +29,18 @@ export default class ContactMe extends Component {
                 "message": message,
                 "subject": subject
             })
-        }).then(res =>{
-            if(res.status === 201){
+        }).then(res => {
+            if (res.status === 201) {
                 this.setState({
                     success: true
                 })
             }
         })
         e.target.reset();
+    }
+
+    componentDidMount() {
+        setInterval(() => this.setState({ success: false }), 5000)
     }
     render() {
         var items = this.props.mydata
@@ -47,38 +51,38 @@ export default class ContactMe extends Component {
                     <div className="card" style={{ boxShadow: "0 5px 11px #ccc" }} >
                         <div className="card-header"><FontAwesomeIcon icon={faEnvelopeOpen} />&nbsp;CONTACT ME</div>
                         <div className="card-body" style={{ background: '#e9ecef' }}>
-                            <div className="row">
+                            <div className="row"> 
                                 <div className="col-lg-8">
                                     <div className="contact-form">
                                         <form onSubmit={this.handleSubmit} id="post">
-                                            <textarea name="message" cols="50" rows="5" placeholder="Message" className="form-control record" style={{ marginBottom: '10px' }} />
-                                            <input type="text" name="username" placeholder="Enter your name" className="form-control record" style={{ marginRight: "4%" }} />
-                                            <input type="email" name="email" placeholder="Enter your email" className="form-control record" />
+                                            <textarea name="message" cols="50" rows="5" placeholder="Message" className="form-control" required style={{ marginBottom: '10px' }} />
+                                            <input type="text" name="username" placeholder="Enter your name" className="form-control" required style={{ marginRight: "4%" }} />
+                                            <input type="email" name="email" placeholder="Enter your email" className="form-control" required />
                                             <div className="form-group">
-                                                <input type="text" name="subject" placeholder="Enter your subject" className="form-control record" />
+                                                <input type="text" name="subject" placeholder="Enter your subject" className="form-control" required />
                                             </div>
                                             <div className="form-sub">
                                                 <button type="submit" className="btn btn1" style={{ color: "white", backgroundColor: "black" }}>SEND MESSAGE</button>
                                             </div>
                                             <span></span>
                                         </form>
-                                        
-                                        { this.state.success 
-                                                ?(<div class="alert alert-success my-3">
-                                                    <strong> Message sent! Thank you, will contact you soon! </strong>
-                                                </div>)
-                                                :(<span></span>)
+
+                                        {this.state.success
+                                            ? (<div class="alert alert-success my-3">
+                                                <strong> Message sent! Thank you, will contact you soon! </strong>
+                                            </div>)
+                                            : (<span></span>)
                                         }
                                     </div>
-                                </div>  
+                                </div>
                                 <div className="col-lg-4">
                                     <div className="address">
                                         <hr />
                                         {items.map((item, id) =>
-                                        (<span key={id}><p><FontAwesomeIcon icon={faMapMarkerAlt} />&nbsp;{item.address }</p>
-                                        <p><FontAwesomeIcon icon={faEnvelopeOpen} />&nbsp;{item.email}</p>
-                                        <p><FontAwesomeIcon icon={faMobileAlt} />&nbsp;{item.phone}</p></span>)
-                                         )}
+                                            (<span key={id}><p><FontAwesomeIcon icon={faMapMarkerAlt} />&nbsp;{item.address}</p>
+                                                <p><FontAwesomeIcon icon={faEnvelopeOpen} />&nbsp;{item.email}</p>
+                                                <p><FontAwesomeIcon icon={faMobileAlt} />&nbsp;{item.phone}</p></span>)
+                                        )}
                                         <hr />
                                     </div>
                                 </div>

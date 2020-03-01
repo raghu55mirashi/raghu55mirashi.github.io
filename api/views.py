@@ -35,7 +35,7 @@ def educationview(request):
 @api_view(['GET'])
 def experienceview(request):
     if request.method == 'GET':
-        records = Experience.objects.all()
+        records = Experience.objects.all().order_by('-joined')
         serializer = ExperienceSerializer(records, many=True)
         return Response(serializer.data)
 
@@ -43,7 +43,7 @@ def experienceview(request):
 @api_view(['GET'])
 def projectsview(request):
     if request.method == 'GET':
-        records = Projects.objects.all()
+        records = Projects.objects.all().order_by('-created_on')
         serializer = ProjectsSerializer(records, many=True)
         return Response(serializer.data)
 

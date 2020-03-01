@@ -59,6 +59,7 @@ class Experience(models.Model):
     company = models.CharField(max_length=100)
     designation = models.CharField(max_length=100)
     duration = models.CharField(max_length=50)
+    joined = models.DateTimeField(auto_now_add=False)
     technology = models.CharField(max_length=200)
     summary = models.TextField()
 
@@ -75,6 +76,7 @@ class Projects(models.Model):
     client = models.CharField(max_length=100)
     technology = models.CharField(max_length=200)
     duration = models.CharField(max_length=50)
+    created_on = models.DateTimeField(auto_now_add=False)
     image = models.ImageField(upload_to="project", blank=True)
     site_url = models.URLField(max_length=200, blank=True)
 

@@ -19,12 +19,12 @@ class ModelEducation(ModelAdmin):
 
 class ModelExperience(ModelAdmin):
     list_display = ('company', 'designation',
-                    'duration', 'technology', 'summary')
+                    'duration', 'joined', 'technology', 'summary')
 
 
 class ModelProjects(ModelAdmin):
     list_display = ('project_name', 'client', 'technology',
-                    'duration', 'image', 'site_url')
+                    'duration', 'created_on', 'image', 'site_url')
 
 
 class ModelSkills(ModelAdmin):
