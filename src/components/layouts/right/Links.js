@@ -16,7 +16,8 @@ export default class Links extends Component {
         this.fetchdata()
     }
     fetchdata() {
-        fetch(this.props.urls + '/api/mylinks')
+        fetch('https://djreact-portfolio.herokuapp.com/api/mylinks')
+            // fetch(this.props.urls + '/api/mylinks')
             .then(res => res.json())
             .then(data => {
                 this.setState({

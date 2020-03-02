@@ -15,7 +15,7 @@ export default class Portfolio extends Component {
         this.fetchdata()
     }
     fetchdata() {
-        fetch(this.props.urls + "/api/projects")
+        fetch("https://djreact-portfolio.herokuapp.com/api/projects")
             .then(response => response.json())
             .then(data => {
                 this.setState({
