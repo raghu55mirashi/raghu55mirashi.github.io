@@ -16,7 +16,12 @@ export default class Main extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            records: [],
+            personaldata: [],
+            portfolio: [],
+            links: [],
+            education: [],
+            experience: [],
+            skills: [],
             url: 'https://djreact-portfolio.herokuapp.com' //this url is used by all files to fetch api
             // url: 'http://127.0.0.1:8000' //this url is used by all files to fetch api
         }
@@ -28,16 +33,28 @@ export default class Main extends Component {
     }
 
     fetch_data() {
-        fetch(this.state.url + '/api/personaldata')
-            .then(res => res.json())
+        let personaldata = fetch(this.state.url + '/api/personaldata');
+        let portfolio = fetch(this.state.url + '/api/projects');
+        let links = fetch(this.state.url + '/api/mylinks');
+        let education = fetch(this.state.url + '/api/education');
+        let experience = fetch(this.state.url + '/api/experience');
+        let skills = fetch(this.state.url + '/api/skills');
+        Promise.all([personaldata, portfolio, links, education, experience, skills])
+            .then(response => Promise.all(response.map(res => res.json())))
             .then(data => {
+
                 this.setState({
-                    records: data
+                    personaldata: data[0],
+                    portfolio: data[1],
+                    links: data[2],
+                    education: data[3],
+                    experience: data[4],
+                    skills: data[5]
                 })
             })
     }
     render() {
-        const { url, records } = this.state
+        const { url, personaldata, portfolio, links, education, experience, skills } = this.state
         return (
             <Router>
                 <div className="jumbotron" style={{ padding: '30px -1px', marginBottom: "unset" }}>
@@ -50,7 +67,7 @@ export default class Main extends Component {
                     </span>
                     <div className="row">
                         <div className="col-lg-3 col-md-3 col-sm-12">
-                            <LeftPane mydata={records} urls={url} />
+                            <LeftPane mydata={personaldata} urls={url} />
                         </div>
                         <div className="col-lg-9 col-md-9 col-sm-12">
                             <div className="container" style={{ padding: '5px' }}>
@@ -58,22 +75,22 @@ export default class Main extends Component {
                                     <div className="card-header app-header" style={CardhColor}>
                                         <Switch>
                                             <Route exact path='/'>
-                                                <Home mydata={records} urls={url} />
+                                                <Home urls={url} mydata={personaldata} />
                                             </Route>
                                             <Route path="/eduskill">
-                                                <EduExpSkill urls={url} />
+                                                <EduExpSkill education={education} experience={experience} skills={skills} />
                                             </Route>
                                             <Route path="/links">
-                                                <Links urls={url} />
+                                                <Links links={links} />
                                             </Route>
                                             <Route path="/contact">
-                                                <ContactMe urls={url} mydata={records} />
+                                                <ContactMe urls={url} mydata={personaldata} />
                                             </Route>
                                             <Route path="/about">
-                                                <AboutMe mydata={records} />
+                                                <AboutMe mydata={personaldata} />
                                             </Route>
                                             <Route path="/portfolio">
-                                                <Portfolio urls={url} />
+                                                <Portfolio portfolio={portfolio} />
                                             </Route>
                                         </Switch>
                                     </div>

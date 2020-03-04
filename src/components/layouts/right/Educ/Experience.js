@@ -4,28 +4,28 @@ import { faTasks, faCalendar } from '@fortawesome/free-solid-svg-icons'
 
 
 export default class Experience extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            records: []
-        }
-        this.fetchdata = this.fetchdata.bind(this)
-    }
-    componentDidMount() {
-        this.fetchdata()
-    }
-    fetchdata() {
-        fetch(this.props.url + '/api/experience')
-            .then(res => res.json())
-            .then(data => {
-                this.setState({
-                    records: data
-                })
-            })
-    }
+    // constructor(props) {
+    //     super(props)
+    //     this.state = {
+    //         records: []
+    //     }
+    //     this.fetchdata = this.fetchdata.bind(this)
+    // }
+    // componentDidMount() {
+    //     this.fetchdata()
+    // }
+    // fetchdata() {
+    //     fetch(this.props.url + '/api/experience')
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             this.setState({
+    //                 records: data
+    //             })
+    //         })
+    // }
 
     render() {
-        var items = this.state.records
+        var items = this.props.experience
         return (
             <React.Fragment>
                 <div className="experience" >

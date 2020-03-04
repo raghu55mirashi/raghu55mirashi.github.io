@@ -1,35 +1,16 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faClock, faCogs } from '@fortawesome/free-solid-svg-icons'
 import thumb from '../right/thumb.png'
 
-export default class Portfolio extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            records: []
-        }
-        this.fetchdata = this.fetchdata.bind(this)
-    }
-    componentDidMount() {
-        this.fetchdata()
-    }
-    fetchdata() {
-        fetch("https://djreact-portfolio.herokuapp.com/api/projects")
-            .then(response => response.json())
-            .then(data => {
-                this.setState({
-                    records: data
-                })
-            })
-    }
+export default class Portfolio extends PureComponent {
     render() {
-        var items = this.state.records
+        var items = this.props.portfolio
         return (
             <React.Fragment>
                 <div className="about" style={{ overflow: "auto", backgroundColor: 'transparent' }} >
                     <h1>
-                        MY&nbsp;<span>PORTFOLIO</span>
+                        MY{' '}<span>PORTFOLIO</span>
                     </h1>
                     <hr style={{ width: "200px" }} />
                     {items.map((item, id) => (
