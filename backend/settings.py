@@ -11,7 +11,7 @@ SECRET_KEY = 'fxtwwg#3%tnlr&_#$qp$#1+d#7vty6-bb=mi4ewgsy5&htxu(s'
 DEBUG = True
 
 
-ALLOWED_HOSTS = ["djreact-portfolio.herokuapp.com", "127.0.0.1"]
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
