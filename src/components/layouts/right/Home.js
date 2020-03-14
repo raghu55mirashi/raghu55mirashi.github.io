@@ -11,7 +11,7 @@ const Home = () => (
             <React.Fragment>
             {Object.keys(context.personaldata).map(item =>(
                 <div key={item} className="home">
-                <h1> Hi ! I'M {context.personaldata[item].firstname.toUpperCase()}</h1>
+                <h2> Hi ! I'M {context.personaldata[item].firstname.toUpperCase()}</h2>
                 <br />
                 <h4> I'M {context.personaldata[item].designation.toUpperCase()}</h4>
                 <br />
