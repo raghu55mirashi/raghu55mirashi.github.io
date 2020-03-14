@@ -75,6 +75,7 @@ class Projects(models.Model):
     project_name = models.CharField(max_length=100)
     client = models.CharField(max_length=100)
     technology = models.CharField(max_length=200)
+    description = models.TextField(blank=True)
     duration = models.CharField(max_length=50)
     created_on = models.DateTimeField(auto_now_add=False)
     image = models.ImageField(upload_to="project", blank=True)

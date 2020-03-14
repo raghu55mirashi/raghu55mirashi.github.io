@@ -2,59 +2,23 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import './App.css';
 import LeftPane from './components/layouts/left/LeftPane'
-import EduExpSkill from './components/layouts/right/EduExpSkill'
 import Home from './components/layouts/right/Home'
+import AboutMe from './components/layouts/right/AboutMe'
+import EduExpSkill from './components/layouts/right/EduExpSkill'
+import Portfolio from './components/layouts/right/Portfolio'
 import Links from './components/layouts/right/Links'
 import ContactMe from './components/layouts/right/ContactMe'
-import Portfolio from './components/layouts/right/Portfolio'
-import AboutMe from './components/layouts/right/AboutMe'
+import Error from './components/Error'
+
+import Education from './components/layouts/right/Educ/Education'
+import Experience from './components/layouts/right/Educ/Experience'
+import Skills from './components/layouts/right/Educ/Skills'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBriefcase, faHome, faGraduationCap, faLink, faEnvelopeOpen } from '@fortawesome/free-solid-svg-icons'
 
 export default class Main extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            personaldata: [],
-            portfolio: [],
-            links: [],
-            education: [],
-            experience: [],
-            skills: [],
-            url: 'https://djreact-portfolio.herokuapp.com' //this url is used by all files to fetch api
-            // url: 'http://127.0.0.1:8000' //this url is used by all files to fetch api
-        }
-        this.fetch_data = this.fetch_data.bind(this)
-    }
-
-    componentDidMount() {
-        this.fetch_data()
-    }
-
-    fetch_data() {
-        let personaldata = fetch(this.state.url + '/api/personaldata');
-        let portfolio = fetch(this.state.url + '/api/projects');
-        let links = fetch(this.state.url + '/api/mylinks');
-        let education = fetch(this.state.url + '/api/education');
-        let experience = fetch(this.state.url + '/api/experience');
-        let skills = fetch(this.state.url + '/api/skills');
-        Promise.all([personaldata, portfolio, links, education, experience, skills])
-            .then(response => Promise.all(response.map(res => res.json())))
-            .then(data => {
-
-                this.setState({
-                    personaldata: data[0],
-                    portfolio: data[1],
-                    links: data[2],
-                    education: data[3],
-                    experience: data[4],
-                    skills: data[5]
-                })
-            })
-    }
     render() {
-        const { url, personaldata, portfolio, links, education, experience, skills } = this.state
         return (
             <Router>
                 <div className="jumbotron" style={{ padding: '30px -1px', marginBottom: "unset" }}>
@@ -67,31 +31,40 @@ export default class Main extends Component {
                     </span>
                     <div className="row">
                         <div className="col-lg-3 col-md-3 col-sm-12">
-                            <LeftPane mydata={personaldata} urls={url} />
+                            <LeftPane />
                         </div>
                         <div className="col-lg-9 col-md-9 col-sm-12">
                             <div className="container" style={{ padding: '5px' }}>
                                 <div className="card" style={CardColor}>
                                     <div className="card-header app-header" style={CardhColor}>
                                         <Switch>
-                                            <Route exact path='/'>
-                                                <Home urls={url} mydata={personaldata} />
-                                            </Route>
-                                            <Route path="/eduskill">
-                                                <EduExpSkill education={education} experience={experience} skills={skills} />
-                                            </Route>
-                                            <Route path="/links">
-                                                <Links links={links} />
-                                            </Route>
-                                            <Route path="/contact">
-                                                <ContactMe urls={url} mydata={personaldata} />
-                                            </Route>
-                                            <Route path="/about">
-                                                <AboutMe mydata={personaldata} />
-                                            </Route>
-                                            <Route path="/portfolio">
-                                                <Portfolio portfolio={portfolio} />
-                                            </Route>
+                                            <Route exact path='/' component={Home} />
+                                                
+                                            <Route exact path="/about" component={AboutMe} />
+
+                                            <Route exact path="/portfolio" component={Portfolio} />
+                                                
+                                            <Route exact path="/links" component={Links} />
+                                                
+                                            <Route exact path="/contact" component={ContactMe} />
+                                                
+                                            <EduExpSkill>
+                                                <Route exact component={() =>
+                                                    <React.Fragment>
+                                                        <Route exact path="/eduskill">
+                                                            <Education />
+                                                        </Route>
+                                                        <Route exact path="/experience">
+                                                            <Experience />
+                                                        </Route>
+                                                        <Route exact path="/skills">
+                                                            <Skills />
+                                                        </Route>
+                                                    </React.Fragment>                            
+                                                } />
+                                            </EduExpSkill>
+
+                                            <Route component={Error} />
                                         </Switch>
                                     </div>
                                 </div>

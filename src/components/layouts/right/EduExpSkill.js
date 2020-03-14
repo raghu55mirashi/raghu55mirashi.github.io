@@ -1,13 +1,10 @@
 import React from 'react'
-import { Link, BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Education from './Educ/Education'
-import Experience from './Educ/Experience'
-import Skills from './Educ/Skills'
+import { Link, BrowserRouter as Router } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGraduationCap, faTasks, faStar } from '@fortawesome/free-solid-svg-icons'
 
-const EduExpSkill = props => {
-    const { urls, education, experience, skills } = props;
+const EduExpSkill = (props) => {
+    
     return (
         <React.Fragment>
             <Router>
@@ -24,18 +21,8 @@ const EduExpSkill = props => {
                             </div>
                         </div>
                         <div className="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-                            <div className="can-education" >
-                                <Switch>
-                                    <Route path="/eduskill">
-                                        <Education url={urls} education={education} />
-                                    </Route>
-                                    <Route path="/experience">
-                                        <Experience url={urls} experience={experience} />
-                                    </Route>
-                                    <Route path="/skills">
-                                        <Skills url={urls} skills={skills} />
-                                    </Route>
-                                </Switch>
+                            <div className="can-education">
+                                {props.children}
                             </div>
                         </div>
                     </div>

@@ -23,7 +23,7 @@ class ModelExperience(ModelAdmin):
 
 
 class ModelProjects(ModelAdmin):
-    list_display = ('project_name', 'client', 'technology',
+    list_display = ('project_name', 'client', 'technology','description',
                     'duration', 'created_on', 'image', 'site_url')
 
 

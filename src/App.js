@@ -1,9 +1,12 @@
 import React from 'react';
-import Main from './Main'
+import Main from './Main';
+import GlobalStore from './store/GlobalStore'
 
 function App() {
   return (
-    <Main url={this} />
+    <GlobalStore>
+       <Main />
+    </GlobalStore>
   );
 }
 
