@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, NavLink } from 'react-router-dom'
 import './App.css';
 import LeftPane from './components/layouts/left/LeftPane'
 import Home from './components/layouts/right/Home'
@@ -9,25 +9,22 @@ import Portfolio from './components/layouts/right/Portfolio'
 import Links from './components/layouts/right/Links'
 import ContactMe from './components/layouts/right/ContactMe'
 import Error from './components/Error'
-
-import Education from './components/layouts/right/Educ/Education'
-import Experience from './components/layouts/right/Educ/Experience'
-import Skills from './components/layouts/right/Educ/Skills'
+import './Main.css'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBriefcase, faHome, faGraduationCap, faLink, faEnvelopeOpen } from '@fortawesome/free-solid-svg-icons'
 
 export default class Main extends Component {
     render() {
-        return (
+        return (    
             <Router>
                 <div className="jumbotron" style={{ padding: '30px -1px', marginBottom: "unset" }}>
-                    <span className="btn-group">
-                        <Link className="btn bt bt1" to="/"><FontAwesomeIcon icon={faHome} /></Link>
-                        <Link className="btn bt bt2" to="/eduskill"><FontAwesomeIcon icon={faGraduationCap} /></Link>
-                        <Link className="btn bt bt3" to="/portfolio"><FontAwesomeIcon icon={faBriefcase} /></Link>
-                        <Link className="btn bt bt4" to="/links"><FontAwesomeIcon icon={faLink} /></Link>
-                        <Link className="btn bt bt5" to="/contact"><FontAwesomeIcon icon={faEnvelopeOpen} /></Link>
+                    <span className='btn-group'>
+                        <NavLink className="btn bt bt1" to="/" exact><FontAwesomeIcon icon={faHome} /></NavLink>
+                        <NavLink className="btn bt bt2" to="/eduskill"><FontAwesomeIcon icon={faGraduationCap} /></NavLink>
+                        <NavLink className="btn bt bt3" to="/portfolio"><FontAwesomeIcon icon={faBriefcase} /></NavLink>
+                        <NavLink className="btn bt bt4" to="/links"><FontAwesomeIcon icon={faLink} /></NavLink>
+                        <NavLink className="btn bt bt5" to="/contact"><FontAwesomeIcon icon={faEnvelopeOpen} /></NavLink>
                     </span>
                     <div className="row">
                         <div className="col-lg-3 col-md-3 col-sm-12">
@@ -48,22 +45,8 @@ export default class Main extends Component {
                                                 
                                             <Route exact path="/contact" component={ContactMe} />
                                                 
-                                            <EduExpSkill>
-                                                <Route exact component={() =>
-                                                    <React.Fragment>
-                                                        <Route exact path="/eduskill">
-                                                            <Education />
-                                                        </Route>
-                                                        <Route exact path="/experience">
-                                                            <Experience />
-                                                        </Route>
-                                                        <Route exact path="/skills">
-                                                            <Skills />
-                                                        </Route>
-                                                    </React.Fragment>                            
-                                                } />
-                                            </EduExpSkill>
-
+                                            <Route path="/eduskill" component={EduExpSkill} />
+                                                
                                             <Route component={Error} />
                                         </Switch>
                                     </div>

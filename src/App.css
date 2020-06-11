@@ -120,9 +120,15 @@
 .edu-container .row .edu-left {
   text-align: center;
 }
+.edu-container .row .buttons a.active {
+    background-color: green;
+    z-index: 100 !important;
+}
+
+
 
 @media screen and (max-width: 844px) {
-  .edu-container .row .edu-left .bottons {
+  .edu-container .row .edu-left .buttons {
     margin-top: 10px !important;
   }
 
