@@ -5,28 +5,28 @@ import { faUser, faDownload } from '@fortawesome/free-solid-svg-icons'
 import MyContext from '../../../store/MyContext'
 
 const Home = () => (
-        <MyContext.Consumer>
-        {context =>(
-            
+    <MyContext.Consumer>
+        {context => (
             <React.Fragment>
-            {Object.keys(context.personaldata).map(item =>(
-                <div key={item} className="home">
-                <h2> Hi ! I'M {context.personaldata[item].firstname.toUpperCase()}</h2>
-                <br />
-                <h4> I'M {context.personaldata[item].designation.toUpperCase()}</h4>
-                <br />
-                <Link to="/about" className="btn btn1" style={{ border: "1px solid #fff" }}>
-                    <FontAwesomeIcon icon={faUser} />{' '}About Me</Link>{' '}
-                    <a className="btn btn1" id="res" style={{ border: "1px solid #fff" }}
-                        href={context.url + context.personaldata[item].resume} target="_blank" rel="noopener noreferrer" download>
-                        <FontAwesomeIcon icon={faDownload} />{' '}My Resume</a>
-            </div>
-            ))}
-            
+                <h1>{Object.keys(context.links).map((key) => console.log(context.links[key].site_name))}</h1>
+                {Object.keys(context.personaldata).map(item => (
+                    <div key={item} className="home">
+                        <h2> Hi ! I'M {context.personaldata[item].firstName.toUpperCase()}</h2>
+                        <br />
+                        <h4> I'M {context.personaldata[item].designation}</h4>
+                        <br />
+                        <Link to="/about" className="btn btn1" style={{ border: "1px solid #fff" }}>
+                            <FontAwesomeIcon icon={faUser} />{' '}About Me</Link>{' '}
+                        <a className="btn btn1" id="res" style={{ border: "1px solid #fff" }}
+                            href={context.url + context.personaldata[item].resume} target="_blank" rel="noopener noreferrer" download>
+                            <FontAwesomeIcon icon={faDownload} />{' '}My Resume</a>
+                    </div>
+                ))}
+
             </React.Fragment>
         )}
-       
-        </MyContext.Consumer>
-    );
+
+    </MyContext.Consumer>
+);
 
 export default Home;

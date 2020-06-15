@@ -1,13 +1,13 @@
 import React from 'react'
-import { NavLink, BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { NavLink, HashRouter as Router, Route, Switch } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGraduationCap, faTasks, faStar } from '@fortawesome/free-solid-svg-icons'
 import Education from './Educ/Education'
 import Experience from './Educ/Experience'
 import Skills from './Educ/Skills'
 
-const EduExpSkill = ({match}) => {
-    
+const EduExpSkill = ({ match }) => {
+
     return (
         <React.Fragment>
             <Router>
@@ -27,10 +27,10 @@ const EduExpSkill = ({match}) => {
                             <div className="can-education">
                                 <Switch>
                                     <Route exact path={`${match.path}`} component={Education} />
-                                    
+
                                     <Route exact path={`${match.path}/experience`} component={Experience} />
-                                    
-                                    <Route exact path={`${match.path}/skills`} component={Skills} />                           
+
+                                    <Route exact path={`${match.path}/skills`} component={Skills} />
                                 </Switch>
                             </div>
                         </div>

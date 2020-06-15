@@ -22,7 +22,6 @@
   box-shadow: 0px 1px 7px 2px #ccc;
 }
 
-
 /* left pane starts here */
 .btn-group {
   left: 52%;
@@ -40,7 +39,6 @@
   color: black;
   font-weight: bolder !important;
 }
-
 
 .btn-group .bt:hover {
   background-color: green;
@@ -83,8 +81,6 @@
   box-sizing: border-box;
 }
 
-
-
 @media screen and (max-width: 844px) {
   .leftPane-div {
     width: 150px;
@@ -121,11 +117,9 @@
   text-align: center;
 }
 .edu-container .row .buttons a.active {
-    background-color: green;
-    z-index: 100 !important;
+  background-color: green;
+  z-index: 100 !important;
 }
-
-
 
 @media screen and (max-width: 844px) {
   .edu-container .row .edu-left .buttons {
@@ -216,7 +210,6 @@
   color: #fff;
 }
 
-
 @media screen and (max-width: 844px) {
   .about {
     padding: 10px;
@@ -280,8 +273,7 @@
   padding: unset !important;
 }
 
-@media(max-width: 767px) {
-
+@media (max-width: 767px) {
   .mylink-header,
   .mylinks {
     height: unset !important;
@@ -297,7 +289,6 @@
   .app-header {
     min-height: 65vh;
   }
-
 }
 
 .mylinks .btn-links {
@@ -312,7 +303,7 @@
 /* contact start here */
 
 .contact .contact-form input[type='text']:not(:last-child),
-input[type='email'] {
+#contact-email {
   margin-bottom: 10px;
   width: 48%;
   float: left;
@@ -330,7 +321,7 @@ input[type='email'] {
   overflow: auto !important;
 }
 
-@media(max-width: 990px) {
+@media (max-width: 990px) {
   .contact .address {
     margin-top: unset;
   }
@@ -354,7 +345,7 @@ input[type='email'] {
 
 .education .card .card-body p,
 .experience .card .card-body p {
-  margin-bottom: 6px
+  margin-bottom: 6px;
 }
 
 .education .card .card-body hr,
@@ -368,7 +359,6 @@ input[type='email'] {
   max-height: 75vh;
   overflow: auto;
 }
-
 
 /* education ends */
 

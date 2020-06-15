@@ -6,28 +6,28 @@ import MyContext from '../../../store/MyContext'
 
 const Links = () => (
     <MyContext.Consumer>
-      {context =>(
-        <React.Fragment>
-        <div className="mylinks" >
-            <div className="card" style={{ boxShadow: "0 5px 11px #ccc" }}>
-                <div className="card-header mylink-header">
-                    <FontAwesomeIcon icon={faLink} />{' '}LINKS</div>
-                <div className="card-body" style={{ textAlign: 'center', paddingTop: '50px' }}>
-                    {Object.keys(context.links).map((item, id) => (
-                        <span key={id}>
-                            <SocialIcon url={context.links[item].site_url} />{' '}
-                        </span>
-                    )
-                    )}
-                    <br /><br />
-                    <hr style={{ width: '150px' }}></hr>
+        {context => (
+            <React.Fragment>
+                <div className="mylinks" >
+                    <div className="card" style={{ boxShadow: "0 5px 11px #ccc" }}>
+                        <div className="card-header mylink-header">
+                            <FontAwesomeIcon icon={faLink} />{' '}LINKS</div>
+                        <div className="card-body" style={{ textAlign: 'center', paddingTop: '50px' }}>
+                            {Object.keys(context.links).map(item => (
+                                <span key={item}>
+                                    <SocialIcon url={context.links[item].siteUrl} />{' '}
+                                </span>
+                            )
+                            )}
+                            <br /><br />
+                            <hr style={{ width: '150px' }}></hr>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </React.Fragment>
-      )}
+            </React.Fragment>
+        )}
     </MyContext.Consumer>
-    
-    )
+
+)
 
 export default Links;

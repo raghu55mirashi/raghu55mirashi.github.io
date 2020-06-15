@@ -1,16 +1,28 @@
-download or clone to local system
-create virtual environment in root folder using "virtualenv env" in commandline .....
-example if downloaded file in desktop then  in cmd desktop/django-react-portfolio>virtualenv env
-then 'env\scripts\activate'
-then 'pip install -r requirements.txt'
+steps to deploy
 
-then will go to set react app
-first need to change dir to 'cd frontend'
-then 'yarn install'
-after all node_modules installation 'yarn start'
-then build package by 'yarn build' it will be accessible through django app
+create public repository with same name(this will be sitename) as owner name
 
-then cd to django-react-portfolio
-always remember to activate env if it is active then ok else follow 4th step
-then python manage.py runserver
+git remote remove origin
 
+git remote add origin https://github.com/raghu55mirashi/raghu55mirashi.github.io.git
+
+yarn add gh-pages
+
+add these in package.json:
+"homepage":"sitename.github.io",
+"scripts":{
+"predeploy":"yarn run build",
+"deploy":"gh-pages -d build -b master"
+}
+
+git checkout -b sourcecode //to move code from master to source
+
+git add .
+
+git commit
+
+git push
+
+git branch -d master //deletes master branch bcoz it will be used to keep build code, managed by package.json
+
+yarn build

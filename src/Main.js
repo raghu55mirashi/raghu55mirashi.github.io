@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Switch, Route, NavLink } from 'react-router-dom'
+import { HashRouter as Router, Switch, Route, NavLink } from 'react-router-dom'
 import './App.css';
 import LeftPane from './components/layouts/left/LeftPane'
 import Home from './components/layouts/right/Home'
@@ -16,7 +16,7 @@ import { faBriefcase, faHome, faGraduationCap, faLink, faEnvelopeOpen } from '@f
 
 export default class Main extends Component {
     render() {
-        return (    
+        return (
             <Router>
                 <div className="jumbotron" style={{ padding: '30px -1px', marginBottom: "unset" }}>
                     <span className='btn-group'>
@@ -36,17 +36,17 @@ export default class Main extends Component {
                                     <div className="card-header app-header" style={CardhColor}>
                                         <Switch>
                                             <Route exact path='/' component={Home} />
-                                                
+
                                             <Route exact path="/about" component={AboutMe} />
 
                                             <Route exact path="/portfolio" component={Portfolio} />
-                                                
+
                                             <Route exact path="/links" component={Links} />
-                                                
+
                                             <Route exact path="/contact" component={ContactMe} />
-                                                
+
                                             <Route path="/eduskill" component={EduExpSkill} />
-                                                
+
                                             <Route component={Error} />
                                         </Switch>
                                     </div>

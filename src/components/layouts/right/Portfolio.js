@@ -49,7 +49,7 @@ export default class Portfolio extends Component {
                             {Object.keys(context.portfolio).map((item, id) => (
                                 <div key={id} className="card" style={{ marginBottom: "15px", boxShadow: "0 5px 11px #ccc" }}>
                                     <div className="card-header" style={{ paddingBottom: 0, paddingTop: "5px" }}>
-                                        <h5>{context.portfolio[item].project_name}</h5>
+                                        <h5>{context.portfolio[item].projectName}</h5>
                                     </div>
                                     <div className="card-body">
                                         <div className="row">
@@ -96,13 +96,13 @@ export default class Portfolio extends Component {
                                     </div>
 
                                     <Modal isOpen={this.state.selectModal === id && this.state.toggleModal} toggle={this.toggleModal} style={{ top: "30%", transform: "translate(0%, -5%)" }}>
-                                        <ModalHeader className="justify-content-center" style={{ backgroundColor: '#dee2e6' }} toggle={this.toggleModal}>{context.portfolio[item].project_name}</ModalHeader>
+                                        <ModalHeader className="justify-content-center" style={{ backgroundColor: '#dee2e6' }} toggle={this.toggleModal}>{context.portfolio[item].projectName}</ModalHeader>
                                         <ModalBody style={{ backgroundColor: '#dee2e6' }}>
                                             <h5>Project Description: </h5>
                                             {context.portfolio[item].description}
                                         </ModalBody>
                                         <ModalFooter style={{ backgroundColor: '#dee2e6' }}>
-                                            <a className="btn btn1" href={context.portfolio[item].site_url}>Goto Site</a>{' '}
+                                            <a className="btn btn1" href={context.portfolio[item].siteUrl}>Goto Site</a>{' '}
                                             <Button color="secondary" onClick={this.onCloseModal}>Cancel</Button>
                                         </ModalFooter>
                                     </Modal>

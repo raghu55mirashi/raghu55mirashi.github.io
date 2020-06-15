@@ -5,10 +5,10 @@ import MyContext from '../../../store/MyContext'
 
 const AboutMe = () => (
     <MyContext.Consumer>
-    {context =>(
-        <React.Fragment>
-                {Object.keys(context.personaldata).map((item, index) => (
-                    <div key={index} className="card about ab" style={{ boxShadow: "0 5px 11px #ccc" }}>
+        {context => (
+            <React.Fragment >
+                {Object.keys(context.personaldata).map(item => (
+                    <div key={item} className="card about ab" style={{ boxShadow: "0 5px 11px #ccc" }}>
                         <h1>
                             ABOUT <span>ME</span>
                         </h1>
@@ -20,7 +20,7 @@ const AboutMe = () => (
                                 <tr>
                                     <td>
                                         <p>
-                                            <b> First Name:</b> {context.personaldata[item].firstname}
+                                            <b> First Name:</b> {context.personaldata[item].firstName}
                                         </p>
                                     </td>
                                     <td>
@@ -32,7 +32,7 @@ const AboutMe = () => (
                                 <tr>
                                     <td>
                                         <p>
-                                            <b> Last Name:</b> {context.personaldata[item].lastname}
+                                            <b> Last Name:</b> {context.personaldata[item].lastName}
                                         </p>
                                     </td>
                                     <td>
@@ -44,7 +44,7 @@ const AboutMe = () => (
                                 <tr>
                                     <td>
                                         <p>
-                                            <b>Date of Birth:</b> {context.personaldata[item].dateofbirth}
+                                            <b>Date of Birth:</b> {context.personaldata[item].birthDate}
                                         </p>
                                     </td>
                                     <td>
@@ -61,7 +61,7 @@ const AboutMe = () => (
                                     </td>
                                     <td>
                                         <p>
-                                            <b> Spoken Languages:</b> {context.personaldata[item].spk_lng}
+                                            <b> Spoken Languages:</b> {context.personaldata[item].speakingLanguages}
                                         </p>
                                     </td>
                                 </tr>
@@ -69,17 +69,15 @@ const AboutMe = () => (
                         </table>
 
                         <div className="about-btn">
-                            <a className="btn  btn1" href={context.personaldata[item].blog_url} style={{ padding: "6px 15px", marginBottom: "-5px", backgroundColor: 'black', color: '#fff' }}>
+                            <a className="btn  btn1" href={context.personaldata[item].blogUrl} style={{ padding: "6px 15px", marginBottom: "-5px", backgroundColor: 'black', color: '#fff' }}>
                                 <FontAwesomeIcon icon={faBlog} />&nbsp;My Blog </a>
                         </div>
                         <br />
                     </div>
-                )
-                )
-                }
+                ))}
             </React.Fragment>
-    )}
+        )}
     </MyContext.Consumer>
-    )
+)
 export default AboutMe
 

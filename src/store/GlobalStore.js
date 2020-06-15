@@ -1,19 +1,20 @@
 import React, { Component } from 'react'
 import MyContext from './MyContext'
+// import Mydata from './data.json'
 
 export default class GlobalStore extends Component {
     constructor(props) {
         super(props)
+
         this.state = {
-            personaldata: [],
-            portfolio: [],
-            links: [],
-            education: [],
-            experience: [],
-            skills: [],
+            personaldata: {},
+            portfolio: {},
+            links: {},
+            education: {},
+            experience: {},
+            skills: {},
             name: 'ddd',
-            // url: 'https://djreact-portfolio.herokuapp.com' //this url is used by all files to fetch api
-            url: 'http://127.0.0.1:8000', //this url is used by all files to fetch api
+            url: 'https://react-porfolio.firebaseio.com',
             error: false
         }
         this.fetch_data = this.fetch_data.bind(this)
@@ -21,27 +22,44 @@ export default class GlobalStore extends Component {
 
     componentDidMount() {
         this.fetch_data()
+        // const {
+        //     personaldata, portfolio, links,
+        //     education, experience, skills } = Mydata
+        // this.setState({
+        //     personaldata, portfolio,
+        //     links, education,
+        //     experience, skills
+        // })
     }
 
     async fetch_data() {
+
         const urls = [
-            'personaldata',
-            'projects',
-            'mylinks',
-            'education',
-            'experience',
-            'skills'
+            'Personal',
+            'Portfolio',
+            'Links',
+            'Education',
+            'Experience',
+            'Skills',
         ]
         try {
-            const [
-                personaldata, portfolio, links,
-                education, experience, skills] = await Promise.all(urls.map(url =>
-                    fetch(this.state.url + '/api/' + url).then(res => res.json())
-                ))
+            const [Personal, Portfolio, Links, Education, Experience, Skills] = await Promise.all(urls.map(url =>
+                fetch(`${this.state.url}/${url}.json`).then(res => res.json())
+            ))
+            // Object.keys(Links).map(key => {
+            //     console.log(Links[key]);
+
+            // })
+
+            // console.log(Personal);
+
             this.setState({
-                personaldata, portfolio,
-                links, education,
-                experience, skills
+                personaldata: Personal,
+                portfolio: Portfolio,
+                links: Links,
+                education: Education,
+                experience: Experience,
+                skills: Skills
             })
         } catch (error) {
             this.setState({ error })
