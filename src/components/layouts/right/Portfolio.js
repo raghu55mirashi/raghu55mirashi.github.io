@@ -5,6 +5,7 @@ import thumb from '../right/thumb.png'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 import MyContext from '../../../store/MyContext'
 // import Spinner from '../../UI/Spinner/Spinner'
+import getImageURL from '../getImageURL/getImageURL'
 
 export default class Portfolio extends Component {
     constructor(props) {
@@ -12,10 +13,10 @@ export default class Portfolio extends Component {
         this.state = {
             toggleModal: false,
             selectModal: null,
-            loading: false
+            loading: false,
+            imgs: {}
         }
     }
-    // static contextType = MyContext
 
     onOpenModal = id => {
         this.setState({
@@ -55,7 +56,10 @@ export default class Portfolio extends Component {
                                         <div className="row">
                                             <div className="col-lg-6 col-md-6">
                                                 <div className="project-img">
-                                                    <img src={!(context.portfolio[item].image) ? thumb : context.portfolio[item].image} alt="no pics" className="img-thumbnail" />
+                                                    <img src={!(context.portfolio[item].image) ? thumb : (getImageURL(context.portfolio[item].image))}
+                                                        id={context.portfolio[item].image}
+                                                        alt=""
+                                                        className="img-thumbnail" />
                                                 </div>
                                             </div>
                                             <div className="col-lg-6 col-md-6">

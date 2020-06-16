@@ -5,7 +5,7 @@ import FormInput from './form-input/form-input'
 import DataList from './data_list/data_list'
 import './data_entry.scss'
 import FormFields from './form-fields/form-fields.json'
-import { auth } from '../../../firebase/firebase'
+import { auth, storage } from '../../../firebase/firebase'
 
 class DataEntry extends React.Component {
     state = {
@@ -15,19 +15,41 @@ class DataEntry extends React.Component {
         Experience: {},
         Links: {},
         Skills: {},
+        image: null,
+        resume: null
     }
     handleChange(sectionName, e) {
         var { name, value } = e.target
+
+        if ((name === 'image' || name === 'resume') && e.target.files[0]) {
+            value = e.target.files[0]
+            this.setState({
+                [name]: value
+            }, () => console.log(this.state.image))
+            value = e.target.files[0].name
+        }
         if (sectionName in this.state) {
             const ObjOfState = this.state[sectionName]
             ObjOfState[name] = value
+
             this.setState({
                 [sectionName]: ObjOfState
-            })
+            }, () => console.log(this.state.Personal))
         }
     }
     handleSubmit(sectionName, e) {
         e.preventDefault()
+        const { image, resume } = this.state
+        if (image) {
+            storage.ref(`images/${image.name}`).put(image)
+        }
+        if (resume) {
+            storage.ref(`resumes/${resume.name}`).put(resume)
+        }
+        // uploadTask.on('state_changed',
+        //     (snapshot) => { },
+        //     (error) => { },
+        //     () => { })
         if (sectionName in this.state) {
             var ObjOfState = this.state[sectionName]
 
@@ -50,10 +72,10 @@ class DataEntry extends React.Component {
 
         }
     }
-    resect = (item, e) => {
+    reset = (item, e) => {
         document.getElementById(item.toString()).reset()
     }
-    resectAll = (items, e) => {
+    resetAll = (items, e) => {
         items.map(item => document.getElementById(item.toString()).reset())
     }
     render() {
@@ -74,8 +96,8 @@ class DataEntry extends React.Component {
                                         </div>
                                         <div className="center-btn">
                                             <DataList />{'  '}
-                                            <Button value="Reset" onclick={(e) => this.resect(item, e)} />{'  '}
-                                            <Button value="Reset All" onclick={(e) => this.resectAll(Object.keys(FormFields), e)} />
+                                            <Button value="Reset" onclick={(e) => this.reset(item, e)} />{'  '}
+                                            <Button value="Reset All" onclick={(e) => this.resetAll(Object.keys(FormFields), e)} />
                                         </div>
                                         <div className="right-btn">
                                             <Button value=">" onclick={() => this.carousel.slideNext()} />
