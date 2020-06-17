@@ -28,8 +28,8 @@ export default class ContactMe extends Component {
         })
         let err = ''
         if (name === 'message' || name === 'username' || name === 'subject') {
-            if (value.length <= 5) {
-                err = `Enter your ${name} with atleast 5 character`
+            if (value.length < 3) {
+                err = `Enter your ${name} with atleast 3 character`
             }
         }
         this.setState({
@@ -39,25 +39,25 @@ export default class ContactMe extends Component {
     handleSubmit = (e) => {
         e.preventDefault()
         const { username, email, message, subject } = this.state
-        if (message.length <= 5) {
+        if (message.length <= 3) {
             this.refmsg.current.focus();
-            //    this.setState({
-            //         tooltipOpen : true
-            //    })
+            this.setState({
+                tooltipOpen: true
+            })
         }
-        if (username.length <= 5) {
+        if (username.length < 3) {
             this.refuser.current.focus();
         }
         if (!email) {
             this.refemail.current.focus();
         }
-        if (subject.length <= 5) {
+        if (subject.length < 3) {
             this.refsub.current.focus();
         }
         const urls = e.target.elements.urls.value
 
-        if (username.length >= 5 && email && message.length >= 5 && subject.length >= 5) {
-            fetch(urls + '/api/contactus', {
+        if (username.length >= 3 && email && message.length >= 3 && subject.length >= 3) {
+            fetch(`${urls}/contactus.json`, {
                 method: 'POST',
                 mode: 'cors',
                 headers: {
@@ -70,7 +70,7 @@ export default class ContactMe extends Component {
                     "subject": subject
                 })
             }).then(res => {
-                if (res.status === 201) {
+                if (res.status === 200) {
                     this.setState({
                         success: true,
                         username: '',
@@ -120,7 +120,7 @@ export default class ContactMe extends Component {
                                                     <input type="text" title={this.state.errorMessage} name="username" placeholder="Username"
                                                         className="form-control" style={{ marginRight: "4%" }}
                                                         onChange={this.handleChange} ref={this.refuser} value={username} />
-                                                    <input type="email" name="email" placeholder="Email" 
+                                                    <input type="email" name="email" placeholder="Email"
                                                         className="form-control" required id="contact-email"
                                                         onChange={this.handleChange} ref={this.refemail} value={email} />
                                                     <div className="form-group">

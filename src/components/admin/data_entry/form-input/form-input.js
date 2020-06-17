@@ -10,9 +10,7 @@ const FormInput = ({ name, placeholder, handleChange }) => {
     if (name === 'email') {
         types = 'email'
     }
-    if (name === 'image' || name === 'resume') {
-        types = 'file'
-    }
+
     var input = <input type={types}
         placeholder={modifiedStr}
         name={name}
@@ -25,14 +23,16 @@ const FormInput = ({ name, placeholder, handleChange }) => {
             className="form-control textarea" onChange={handleChange}
             id={name} name={name} rows="4" cols="50" />
     }
-    // if (name === 'image') {
-    //     input = <input type={types}
-    //         placeholder={modifiedStr}
-    //         name={name}
-    //         id={name}
-    //         className="form-control formcontrol"
-    //         onChange={handleChange} />
-    // }
+    if (name === 'image' || name === 'resume') {
+        input = <span>
+            <label style={{ padding: "4px 20px", backgroundColor: "#283054", color: '#6c757d' }}>Select {modifiedStr}</label>
+            <input type="file"
+                name={name}
+                id={name}
+                className="formcontrol"
+                onChange={handleChange} title="Select Your Image" />
+        </span>
+    }
     return (
         <React.Fragment>
             {input}

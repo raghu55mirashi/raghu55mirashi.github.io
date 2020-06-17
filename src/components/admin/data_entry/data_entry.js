@@ -24,8 +24,8 @@ class DataEntry extends React.Component {
         if ((name === 'image' || name === 'resume') && e.target.files[0]) {
             value = e.target.files[0]
             this.setState({
-                [name]: value
-            }, () => console.log(this.state.image))
+                [name]: value    //keeping state to use for submission of files
+            })
             value = e.target.files[0].name
         }
         if (sectionName in this.state) {
@@ -34,7 +34,7 @@ class DataEntry extends React.Component {
 
             this.setState({
                 [sectionName]: ObjOfState
-            }, () => console.log(this.state.Personal))
+            })
         }
     }
     handleSubmit(sectionName, e) {
@@ -46,10 +46,6 @@ class DataEntry extends React.Component {
         if (resume) {
             storage.ref(`resumes/${resume.name}`).put(resume)
         }
-        // uploadTask.on('state_changed',
-        //     (snapshot) => { },
-        //     (error) => { },
-        //     () => { })
         if (sectionName in this.state) {
             var ObjOfState = this.state[sectionName]
 
@@ -59,7 +55,6 @@ class DataEntry extends React.Component {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                // body: JSON.stringify({ [sectionName]: ObjOfState })
                 body: JSON.stringify(ObjOfState)
             }).then(res => {
                 if (res.status === 200) {

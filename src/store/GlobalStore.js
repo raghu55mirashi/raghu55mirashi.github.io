@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import MyContext from './MyContext'
-// import Mydata from './data.json'
 
 export default class GlobalStore extends Component {
     constructor(props) {
@@ -13,7 +12,6 @@ export default class GlobalStore extends Component {
             education: {},
             experience: {},
             skills: {},
-            name: 'ddd',
             url: 'https://react-porfolio.firebaseio.com',
             error: false
         }
@@ -22,14 +20,6 @@ export default class GlobalStore extends Component {
 
     componentDidMount() {
         this.fetch_data()
-        // const {
-        //     personaldata, portfolio, links,
-        //     education, experience, skills } = Mydata
-        // this.setState({
-        //     personaldata, portfolio,
-        //     links, education,
-        //     experience, skills
-        // })
     }
 
     async fetch_data() {
@@ -46,12 +36,6 @@ export default class GlobalStore extends Component {
             const [Personal, Portfolio, Links, Education, Experience, Skills] = await Promise.all(urls.map(url =>
                 fetch(`${this.state.url}/${url}.json`).then(res => res.json())
             ))
-            // Object.keys(Links).map(key => {
-            //     console.log(Links[key]);
-
-            // })
-
-            // console.log(Personal);
 
             this.setState({
                 personaldata: Personal,
