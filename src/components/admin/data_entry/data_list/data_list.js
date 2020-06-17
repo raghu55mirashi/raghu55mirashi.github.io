@@ -29,11 +29,6 @@ class DataList extends Component {
             'Skills'
         ]
         try {
-            // const data = await Promise.all(urls.map(url =>
-            //     fetch(`${this.state.url}/${url}.json`).then(res => res.json())
-            // ))
-
-            // console.log(data)
             const [
                 Personal, Portfolio, Links,
                 Education, Experience, Skills] = await Promise.all(urls.map(url =>
@@ -44,9 +39,6 @@ class DataList extends Component {
                 Personal, Portfolio,
                 Links, Education,
                 Experience, Skills
-            }, () => {
-                console.log(this.state.Personal)
-                // Object.keys(this.state).filter(key => Object.keys(this.state[key]).map(fi => console.log(this.state[key][fi].email)))
             })
 
         } catch (error) {
