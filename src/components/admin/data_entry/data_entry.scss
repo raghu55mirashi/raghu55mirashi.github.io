@@ -51,6 +51,11 @@
             float: right;
           }
         }
+        .data-form-inner-top {
+          height: 50px;
+          top: 0;
+          position: sticky;
+        }
       }
     }
   }

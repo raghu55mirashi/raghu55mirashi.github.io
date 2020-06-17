@@ -85,7 +85,7 @@ class DataEntry extends React.Component {
                         <Carousel ref={ref => (this.carousel = ref)} >
                             {Object.keys(FormFields).map((item, id) => (
                                 <div className="scroller" key={id}>
-                                    <div className="data-form-inner" >
+                                    <div className="data-form-inner data-form-inner-top" >
                                         <div className="left-btn">
                                             <Button value="<" onclick={() => this.carousel.slidePrev()} />
                                         </div>
