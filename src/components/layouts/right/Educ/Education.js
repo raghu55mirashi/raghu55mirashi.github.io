@@ -11,13 +11,13 @@ const Education = () => (
                     <div className="card" style={{ boxShadow: "0 5px 11px #ccc", overflow: 'auto' }}>
                         <div className="card-header"><FontAwesomeIcon icon={faGraduationCap} />{' '}EDUCATION</div>
                         <span>
-                            {Object.keys(context.education).map((item, id) =>
+                            {Object.keys(context.Education).map((item, id) =>
                                 <div key={id} className="card-body" style={{ paddingBottom: "0" }}>
                                     <div className="header1">
-                                        <h6><span>{context.education[item].degree.toUpperCase()} </span>- {context.education[item].course.toUpperCase()}</h6>
-                                        <p><FontAwesomeIcon icon={faCalendar} />{' '}{context.education[item].passYear}</p>
-                                        Completed my {context.education[item].degree}  from {' '}
-                                        <h6>{context.education[item].university}</h6>
+                                        <h6><span>{context.Education[item].degree.toUpperCase()} </span>- {context.Education[item].course.toUpperCase()}</h6>
+                                        <p><FontAwesomeIcon icon={faCalendar} />{' '}{context.Education[item].passYear}</p>
+                                        Completed my {context.Education[item].degree}  from {' '}
+                                        <h6>{context.Education[item].university}</h6>
                                     </div>
                                     <hr />
                                 </div>)

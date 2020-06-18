@@ -1,0 +1,31 @@
+#field-modal {
+  top: 30%;
+  transform: translate(0%, -5%);
+  z-index: 100;
+
+  #field-modal-header {
+    background-color: #dee2e6;
+    height: 50px;
+
+    #close {
+      right: 5px;
+      top: 7px;
+      position: absolute;
+
+      #close-btn {
+        border-radius: 80%;
+      }
+    }
+  }
+  #field-modal-body {
+    background-color: #dee2e6;
+    overflow: auto;
+    border-bottom: 1px solid #050303;
+    border-top: 1px solid #050303;
+
+    #field-modal-body-div {
+      overflow: auto;
+      height: 500px;
+    }
+  }
+}

@@ -6,6 +6,7 @@ import DataList from './data_list/data_list'
 import './data_entry.scss'
 import FormFields from './form-fields/form-fields.json'
 import { auth, storage } from '../../../firebase/firebase'
+import GlobalStore from '../../../store/GlobalStore'
 
 class DataEntry extends React.Component {
     state = {
@@ -90,7 +91,9 @@ class DataEntry extends React.Component {
                                             <Button value="<" onclick={() => this.carousel.slidePrev()} />
                                         </div>
                                         <div className="center-btn">
-                                            <DataList />{'  '}
+                                            <GlobalStore>
+                                                <DataList itemKey={item} />{'  '}
+                                            </GlobalStore>
                                             <Button value="Reset" onclick={(e) => this.reset(item, e)} />{'  '}
                                             <Button value="Reset All" onclick={(e) => this.resetAll(Object.keys(FormFields), e)} />
                                         </div>

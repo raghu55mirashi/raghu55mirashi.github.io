@@ -6,12 +6,12 @@ export default class GlobalStore extends Component {
         super(props)
 
         this.state = {
-            personaldata: {},
-            portfolio: {},
-            links: {},
-            education: {},
-            experience: {},
-            skills: {},
+            Personal: {},
+            Portfolio: {},
+            Links: {},
+            Education: {},
+            Experience: {},
+            Skills: {},
             url: 'https://react-porfolio.firebaseio.com',
             error: false
         }
@@ -38,12 +38,12 @@ export default class GlobalStore extends Component {
             ))
 
             this.setState({
-                personaldata: Personal,
-                portfolio: Portfolio,
-                links: Links,
-                education: Education,
-                experience: Experience,
-                skills: Skills
+                Personal,
+                Portfolio,
+                Links,
+                Education,
+                Experience,
+                Skills
             })
         } catch (error) {
             this.setState({ error })

@@ -7,4 +7,8 @@
   &:hover {
     background-color: #f8f9fa;
   }
+  $breakpoint-mobile: 390px;
+  @media (max-width: $breakpoint-mobile) {
+    padding: 2px 7px;
+  }
 }

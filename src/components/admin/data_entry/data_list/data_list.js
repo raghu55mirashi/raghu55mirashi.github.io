@@ -1,57 +1,81 @@
 import React, { Component } from 'react'
 
 import Button from '../button/button'
+import ShowModel from './show_model'
 
 class DataList extends Component {
     constructor() {
         super()
         this.state = {
-            Personal: [],
-            Portfolio: [],
-            Links: [],
-            Education: [],
-            Experience: [],
-            Skills: [],
+            Personal: {},
+            Portfolio: {},
+            Links: {},
+            Education: {},
+            Experience: {},
+            Skills: {},
             url: 'https://react-porfolio.firebaseio.com',
+            itemKey: '',
+            onOpenModal: false
         }
-        this.handleShow = this.handleShow.bind(this)
     }
-
-    async handleShow() {
+    // componentDidMount() {
+    //     this.fetch_data()
+    // }
+    componentDidUpdate() {
+        this.fetch_data()
+    }
+    async fetch_data() {
 
         const urls = [
             'Personal',
             'Portfolio',
-            'Projects',
             'Links',
             'Education',
             'Experience',
-            'Skills'
+            'Skills',
         ]
         try {
-            const [
-                Personal, Portfolio, Links,
-                Education, Experience, Skills] = await Promise.all(urls.map(url =>
-                    fetch(`${this.state.url}/${url}.json`).then(res => res.json())
-                ))
+            const [Personal, Portfolio, Links, Education, Experience, Skills] = await Promise.all(urls.map(url =>
+                fetch(`${this.state.url}/${url}.json`).then(res => res.json())
+            ))
 
             this.setState({
-                Personal, Portfolio,
-                Links, Education,
-                Experience, Skills
+                Personal,
+                Portfolio,
+                Links,
+                Education,
+                Experience,
+                Skills
             })
-
         } catch (error) {
             this.setState({ error })
         }
 
     }
-
+    handleShow = (itemKey) => {
+        this.setState({ itemKey, onOpenModal: true })
+    }
+    onCloseModal = () => {
+        this.setState({
+            onOpenModal: false,
+            itemKey: ''
+        })
+    }
     render() {
+        const { onOpenModal, itemKey } = this.state
         return (
             <React.Fragment>
-                <Button value="Show" onclick={this.handleShow} />{'  '}
+
+                <Button value="Show" onclick={() => this.handleShow(this.props.itemKey)} />{'  '}
                 <Button value="Edit" onclick={this.handleEdit} />
+
+                {onOpenModal
+                    ? <ShowModel
+                        onOpenModal={onOpenModal}
+                        onCloseModal={this.onCloseModal}
+                        itemKey={itemKey} data={this.state} />
+                    : null}
+
             </React.Fragment>
         )
     }

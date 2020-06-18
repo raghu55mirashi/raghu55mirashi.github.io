@@ -141,10 +141,10 @@ export default class ContactMe extends Component {
                                         <div className="col-lg-4">
                                             <div className="address">
                                                 <hr />
-                                                {Object.keys(context.personaldata).map((item, id) =>
-                                                    (<span key={id}><p><FontAwesomeIcon icon={faMapMarkerAlt} />{' '}{context.personaldata[item].address}</p>
-                                                        <p><FontAwesomeIcon icon={faEnvelopeOpen} />{' '}{context.personaldata[item].email}</p>
-                                                        <p><FontAwesomeIcon icon={faMobileAlt} />{' '}{context.personaldata[item].phone}</p></span>)
+                                                {Object.keys(context.Personal).map((item, id) =>
+                                                    (<span key={id}><p><FontAwesomeIcon icon={faMapMarkerAlt} />{' '}{context.Personal[item].address}</p>
+                                                        <p><FontAwesomeIcon icon={faEnvelopeOpen} />{' '}{context.Personal[item].email}</p>
+                                                        <p><FontAwesomeIcon icon={faMobileAlt} />{' '}{context.Personal[item].phone}</p></span>)
                                                 )}
                                                 <hr />
                                             </div>

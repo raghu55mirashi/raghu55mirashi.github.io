@@ -13,9 +13,9 @@ const Links = () => (
                         <div className="card-header mylink-header">
                             <FontAwesomeIcon icon={faLink} />{' '}LINKS</div>
                         <div className="card-body" style={{ textAlign: 'center', paddingTop: '50px' }}>
-                            {Object.keys(context.links).map(item => (
+                            {Object.keys(context.Links).map(item => (
                                 <span key={item}>
-                                    <SocialIcon url={context.links[item].siteUrl} />{' '}
+                                    <SocialIcon url={context.Links[item].siteUrl} />{' '}
                                 </span>
                             )
                             )}

@@ -25,4 +25,4 @@ git push
 
 git branch -d master //deletes master branch bcoz it will be used to keep build code, managed by package.json
 
-yarn build
+yarn deploy

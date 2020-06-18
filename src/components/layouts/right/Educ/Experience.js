@@ -5,19 +5,19 @@ import MyContext from '../../../../store/MyContext'
 
 const Experience = () => (
     <MyContext.Consumer>
-    {context =>(
-        <React.Fragment>
+        {context => (
+            <React.Fragment>
                 <div className="experience" >
                     <div className="card" style={{ boxShadow: "0 5px 11px #ccc", overflow: 'auto' }}>
                         <div className="card-header">
                             <FontAwesomeIcon icon={faTasks} />{' '}EXPERIENCE</div>
-                        {Object.keys(context.experience).map((item, id) => (
+                        {Object.keys(context.Experience).map((item, id) => (
                             <div key={id} className="card-body" style={{ paddingBottom: 0 }}>
                                 <div className="header1">
-                                    <h6><span>{context.experience[item].designation} </span>- {context.experience[item].company}</h6>
-                                    <p><FontAwesomeIcon icon={faCalendar} />{'  '}{context.experience[item].duration}</p>
-                                    <p><FontAwesomeIcon icon={faCogs} /> {'  '}{context.experience[item].technology}</p>
-                                    <p>{context.experience[item].summary}</p>
+                                    <h6><span>{context.Experience[item].designation} </span>- {context.Experience[item].company}</h6>
+                                    <p><FontAwesomeIcon icon={faCalendar} />{'  '}{context.Experience[item].duration}</p>
+                                    <p><FontAwesomeIcon icon={faCogs} /> {'  '}{context.Experience[item].technology}</p>
+                                    <p>{context.Experience[item].summary}</p>
                                 </div>
                                 <hr />
                             </div>
@@ -26,10 +26,10 @@ const Experience = () => (
                     </div>
                 </div>
             </React.Fragment>
-    )}
+        )}
     </MyContext.Consumer>
 );
-  
+
 
 export default Experience
 

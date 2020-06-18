@@ -10,7 +10,7 @@ const getImageURL = (img) => {
             document.getElementById(img).setAttribute('src', url)
         })
     }
-    return null
+    return ''
 }
 
 export default getImageURL;

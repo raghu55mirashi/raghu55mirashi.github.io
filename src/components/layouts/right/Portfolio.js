@@ -47,17 +47,17 @@ export default class Portfolio extends Component {
                                 MY{' '}<span>PORTFOLIO</span>
                             </h1>
                             <hr style={{ width: "200px" }} />
-                            {Object.keys(context.portfolio).map((item, id) => (
+                            {Object.keys(context.Portfolio).map((item, id) => (
                                 <div key={id} className="card" style={{ marginBottom: "15px", boxShadow: "0 5px 11px #ccc" }}>
                                     <div className="card-header" style={{ paddingBottom: 0, paddingTop: "5px" }}>
-                                        <h5>{context.portfolio[item].projectName}</h5>
+                                        <h5>{context.Portfolio[item].projectName}</h5>
                                     </div>
                                     <div className="card-body">
                                         <div className="row">
                                             <div className="col-lg-6 col-md-6">
                                                 <div className="project-img">
-                                                    <img src={!(context.portfolio[item].image) ? thumb : (getImageURL(context.portfolio[item].image))}
-                                                        id={context.portfolio[item].image}
+                                                    <img src={!(context.Portfolio[item].image) ? thumb : (getImageURL(context.Portfolio[item].image))}
+                                                        id={context.Portfolio[item].image}
                                                         alt=""
                                                         className="img-thumbnail" />
                                                 </div>
@@ -68,21 +68,21 @@ export default class Portfolio extends Component {
                                                         <tr>
                                                             <td>
                                                                 <p>
-                                                                    <FontAwesomeIcon icon={faUser} />&nbsp;<b>Client: {context.portfolio[item].client}</b>
+                                                                    <FontAwesomeIcon icon={faUser} />&nbsp;<b>Client: {context.Portfolio[item].client}</b>
                                                                 </p>
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td>
                                                                 <p>
-                                                                    <FontAwesomeIcon icon={faClock} /><b> Duration: {context.portfolio[item].duration}</b>
+                                                                    <FontAwesomeIcon icon={faClock} /><b> Duration: {context.Portfolio[item].duration}</b>
                                                                 </p>
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td>
                                                                 <p>
-                                                                    <FontAwesomeIcon icon={faCogs} /><b> Technologies: {context.portfolio[item].technology}</b>
+                                                                    <FontAwesomeIcon icon={faCogs} /><b> Technologies: {context.Portfolio[item].technology}</b>
                                                                 </p>
                                                             </td>
                                                         </tr>
@@ -99,14 +99,18 @@ export default class Portfolio extends Component {
                                         </div>
                                     </div>
 
-                                    <Modal isOpen={this.state.selectModal === id && this.state.toggleModal} toggle={this.toggleModal} style={{ top: "30%", transform: "translate(0%, -5%)" }}>
-                                        <ModalHeader className="justify-content-center" style={{ backgroundColor: '#dee2e6' }} toggle={this.toggleModal}>{context.portfolio[item].projectName}</ModalHeader>
+                                    <Modal isOpen={this.state.selectModal === id && this.state.toggleModal}
+                                        toggle={this.toggleModal} style={{ top: "30%", transform: "translate(0%, -5%)" }}>
+                                        <ModalHeader className="justify-content-center"
+                                            style={{ backgroundColor: '#dee2e6' }}
+                                            toggle={this.toggleModal}>{context.Portfolio[item].projectName}
+                                        </ModalHeader>
                                         <ModalBody style={{ backgroundColor: '#dee2e6' }}>
                                             <h5>Project Description: </h5>
-                                            {context.portfolio[item].description}
+                                            {context.Portfolio[item].description}
                                         </ModalBody>
                                         <ModalFooter style={{ backgroundColor: '#dee2e6' }}>
-                                            <a className="btn btn1" href={context.portfolio[item].siteUrl}>Goto Site</a>{' '}
+                                            <a className="btn btn1" href={context.Portfolio[item].siteUrl}>Goto Site</a>{' '}
                                             <Button color="secondary" onClick={this.onCloseModal}>Cancel</Button>
                                         </ModalFooter>
                                     </Modal>
