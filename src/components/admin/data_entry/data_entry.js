@@ -1,12 +1,12 @@
 import React from 'react'
 import Carousel from 'react-elastic-carousel'
+import Swal from 'sweetalert2'
 import Button from './button/button'
 import FormInput from './form-input/form-input'
 import DataList from './data_list/data_list'
 import './data_entry.scss'
 import FormFields from './form-fields/form-fields.json'
 import { auth, storage } from '../../../firebase/firebase'
-import GlobalStore from '../../../store/GlobalStore'
 
 class DataEntry extends React.Component {
     state = {
@@ -40,6 +40,7 @@ class DataEntry extends React.Component {
     }
     handleSubmit(sectionName, e) {
         e.preventDefault()
+
         const { image, resume } = this.state
         if (image) {
             storage.ref(`images/${image.name}`).put(image)
@@ -47,6 +48,25 @@ class DataEntry extends React.Component {
         if (resume) {
             storage.ref(`resumes/${resume.name}`).put(resume)
         }
+
+        let timerInterval
+        Swal.fire({
+            title: 'Data is Saving on Server...',
+            html: 'Wait for moment',
+            timer: 1000,
+            timerProgressBar: true,
+            onBeforeOpen: () => {
+                Swal.showLoading()
+            },
+            onClose: () => {
+                clearInterval(timerInterval)
+            }
+        }).then((result) => {
+            if (result.dismiss === Swal.DismissReason.timer) {
+                console.log('I was closed by the timer')
+            }
+        })
+
         if (sectionName in this.state) {
             var ObjOfState = this.state[sectionName]
 
@@ -58,6 +78,7 @@ class DataEntry extends React.Component {
                 },
                 body: JSON.stringify(ObjOfState)
             }).then(res => {
+
                 if (res.status === 200) {
                     this.setState({
                         [sectionName]: {}
@@ -91,9 +112,7 @@ class DataEntry extends React.Component {
                                             <Button value="<" onclick={() => this.carousel.slidePrev()} />
                                         </div>
                                         <div className="center-btn">
-                                            <GlobalStore>
-                                                <DataList itemKey={item} />{'  '}
-                                            </GlobalStore>
+                                            <DataList itemKey={item} />{'  '}
                                             <Button value="Reset" onclick={(e) => this.reset(item, e)} />{'  '}
                                             <Button value="Reset All" onclick={(e) => this.resetAll(Object.keys(FormFields), e)} />
                                         </div>

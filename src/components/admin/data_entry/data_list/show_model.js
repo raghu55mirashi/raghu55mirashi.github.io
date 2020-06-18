@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
+import Swal from 'sweetalert2'
 import './show_modal.scss'
 import SortedFields from '../form-fields/sorted-fields.json'
 import { database } from '../../../../firebase/firebase'
@@ -11,7 +12,24 @@ class ShowModel extends React.Component {
         }
     }
     handleDelete = (key, section) => {
-        database.ref(section + '/' + key).remove()
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.value) {
+                database.ref(section + '/' + key).remove()
+                Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                )
+            }
+        })
     }
 
     render() {
