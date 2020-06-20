@@ -3,9 +3,13 @@
   background-color: #262e53;
   border-radius: 4px;
   border: 1px solid #4d598b;
+  color: #fff;
+  transition: 1s;
+  transition-timing-function: ease;
 
   &:hover {
     background-color: #f8f9fa;
+    color: #000;
   }
   $breakpoint-mobile: 390px;
   @media (max-width: $breakpoint-mobile) {

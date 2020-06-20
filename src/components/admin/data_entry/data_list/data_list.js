@@ -9,10 +9,10 @@ class DataList extends Component {
         this.state = {
             Personal: {},
             Portfolio: {},
-            Links: {},
             Education: {},
             Experience: {},
             Skills: {},
+            Links: {},
             url: 'https://react-porfolio.firebaseio.com',
             itemKey: '',
             onOpenModal: false
@@ -67,12 +67,12 @@ class DataList extends Component {
             <React.Fragment>
 
                 <Button value="Show" onclick={() => this.handleShow(this.props.itemKey)} />{'  '}
-                <Button value="Edit" onclick={this.handleEdit} />
 
                 {onOpenModal
                     ? <ShowModel
                         onOpenModal={onOpenModal}
                         onCloseModal={this.onCloseModal}
+                        handleEdit={this.props.handleEdit}
                         itemKey={itemKey} data={this.state} />
                     : null}
 

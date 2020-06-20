@@ -2,10 +2,10 @@ import React from 'react'
 
 import './button.scss'
 
-const Button = ({ value, onclick }) => (
-    <input type="submit"
+const Button = ({ type = 'button', value, onclick }) => (
+    <input type={type}
         className="button"
-        name="" value={value}
+        value={value}
         onClick={onclick} />
 )
 

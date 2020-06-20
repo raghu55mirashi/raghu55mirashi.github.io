@@ -16,18 +16,33 @@ class DataEntry extends React.Component {
         Experience: {},
         Links: {},
         Skills: {},
-        image: null,
-        resume: null
+        image: null,    //this object used to upload image
+        resume: null,   //this object used to upload file
+        imageName: '',  //this variable used to create dynamic image name
+        resumeName: ''  //this variable used to create dynamic image name
+
     }
     handleChange(sectionName, e) {
         var { name, value } = e.target
 
         if ((name === 'image' || name === 'resume') && e.target.files[0]) {
             value = e.target.files[0]
+            const d = new Date()
+            const dynamicDate = d.getTime()
+            var imageName = '';
+            var resumeName = '';
+            if (name === 'image') {
+                imageName = dynamicDate + e.target.files[0].name
+                this.setState({ imageName })
+            }
+            if (name === 'resume') {
+                resumeName = dynamicDate + e.target.files[0].name
+                this.setState({ resumeName })
+            }
             this.setState({
-                [name]: value    //keeping state to use for submission of files
+                [name]: value   //keeping state to use for submission of files
             })
-            value = e.target.files[0].name
+            value = dynamicDate + e.target.files[0].name
         }
         if (sectionName in this.state) {
             const ObjOfState = this.state[sectionName]
@@ -35,66 +50,80 @@ class DataEntry extends React.Component {
 
             this.setState({
                 [sectionName]: ObjOfState
-            })
+            }, () => console.log(this.state))
         }
     }
     handleSubmit(sectionName, e) {
         e.preventDefault()
+        const inputs = document.querySelectorAll(`#${sectionName} input`)
+        var valid = false
+        for (let i = 0; i < inputs.length; i++) {
 
-        const { image, resume } = this.state
-        if (image) {
-            storage.ref(`images/${image.name}`).put(image)
-        }
-        if (resume) {
-            storage.ref(`resumes/${resume.name}`).put(resume)
-        }
-
-        let timerInterval
-        Swal.fire({
-            title: 'Data is Saving on Server...',
-            html: 'Wait for moment',
-            timer: 1000,
-            timerProgressBar: true,
-            onBeforeOpen: () => {
-                Swal.showLoading()
-            },
-            onClose: () => {
-                clearInterval(timerInterval)
+            if (inputs[i].value === '') {
+                valid = false
+                break;
+            } else {
+                valid = true
             }
-        }).then((result) => {
-            if (result.dismiss === Swal.DismissReason.timer) {
-                console.log('I was closed by the timer')
+
+        }
+        if (!valid) {
+            Swal.fire('Please fill all fields')
+        } else {
+            const { image, resume, imageName, resumeName } = this.state
+            if (image) {
+                storage.ref(`images/${imageName}`).put(image)
             }
-        })
+            if (resume) {
+                storage.ref(`resumes/${resumeName}`).put(resume)
+            }
 
-        if (sectionName in this.state) {
-            var ObjOfState = this.state[sectionName]
-
-            fetch(`https://react-porfolio.firebaseio.com/${sectionName}.json`, {
-                method: 'POST',
-                mode: 'cors',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(ObjOfState)
-            }).then(res => {
-
-                if (res.status === 200) {
-                    this.setState({
-                        [sectionName]: {}
-                    })
-                    document.getElementById(sectionName.toString()).reset()
+            let timerInterval
+            Swal.fire({
+                title: 'Data is Saving on Server...',
+                html: 'Wait for moment',
+                timer: 2000,
+                timerProgressBar: true,
+                onBeforeOpen: () => {
+                    Swal.showLoading()
+                }
+            }).then((result) => {
+                if (result.dismiss === Swal.DismissReason.timer) {
+                    console.log('I was closed by the timer')
                 }
             })
 
+            if (sectionName in this.state) {
+                var ObjOfState = this.state[sectionName]
+
+                fetch(`https://react-porfolio.firebaseio.com/${sectionName}.json`, {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(ObjOfState)
+                }).then(res => {
+                    if (res.status === 200) {
+                        console.log(res)
+                        this.setState({
+                            [sectionName]: {}
+                        })
+                        document.getElementById(sectionName.toString()).reset()
+                        clearInterval(timerInterval)
+                    }
+                })
+            }
         }
     }
+
     reset = (item, e) => {
         document.getElementById(item.toString()).reset()
     }
     resetAll = (items, e) => {
         items.map(item => document.getElementById(item.toString()).reset())
     }
+
     render() {
         return (
             <div className="container-fluid data-container">
@@ -112,7 +141,7 @@ class DataEntry extends React.Component {
                                             <Button value="<" onclick={() => this.carousel.slidePrev()} />
                                         </div>
                                         <div className="center-btn">
-                                            <DataList itemKey={item} />{'  '}
+                                            <DataList itemKey={item} handleEdit={this.handleEdit} />{'  '}
                                             <Button value="Reset" onclick={(e) => this.reset(item, e)} />{'  '}
                                             <Button value="Reset All" onclick={(e) => this.resetAll(Object.keys(FormFields), e)} />
                                         </div>
@@ -133,7 +162,7 @@ class DataEntry extends React.Component {
 
                                             ))}
                                             <div className="form-btn">
-                                                <Button value="Submit" />
+                                                <Button value="Submit" type="submit" />
                                             </div>
                                         </form>
                                     </div>

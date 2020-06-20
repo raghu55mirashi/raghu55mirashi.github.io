@@ -1,48 +1,71 @@
 import React from 'react'
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
+import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 import Swal from 'sweetalert2'
 import './show_modal.scss'
 import SortedFields from '../form-fields/sorted-fields.json'
-import { database } from '../../../../firebase/firebase'
+import { database, storage } from '../../../../firebase/firebase'
+import EditModal from './edit_modal'
+import Button from '../button/button'
 
 class ShowModel extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            editKey: '',
+            editItem: '',
+            imgKey: '',  //passed this img obj to edit modal to delete existing img
+            toggleEdit: false
         }
     }
-    handleDelete = (key, section) => {
+    handleDelete = (category, item, imgData) => {
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.value) {
-                database.ref(section + '/' + key).remove()
+                if (imgData['image']) {
+                    storage
+                        .ref(`images/${imgData['image']}`)
+                        .delete()
+                        .then((error) => {
+                            console.log(error)
+                        })
+                }
+                database.ref(category + '/' + item).remove()
                 Swal.fire(
                     'Deleted!',
-                    'Your file has been deleted.',
+                    'Your record has been deleted.',
                     'success'
                 )
             }
         })
     }
+    handleEdit = (category, editKey, DataImage) => {
+        this.setState({
+            editItem: category,
+            editKey: editKey,
+            imgKey: DataImage,
+            toggleEdit: !this.state.toggleEdit
+        }, () => console.log(this.state))
 
+    }
     render() {
-        var { itemKey, onOpenModal } = this.props
-        var itemk = itemKey.toString()
+        const { editItem, editKey } = this.state
+        var { itemKey, onOpenModal, data } = this.props
+        var category = itemKey.toString()
         if (!itemKey) {
-            itemk = 'Personal'
+            category = 'Personal'
         }
         return (
             <React.Fragment>
                 <Modal isOpen={onOpenModal} id="field-modal">
                     <ModalHeader className="justify-content-center" id="field-modal-header">
-                        {itemk.toUpperCase()}
+                        {category.toUpperCase()}
                         <div id="close">
                             <button type="button" id="close-btn" className="btn" onClick={this.props.onCloseModal}>x</button>
                         </div>
@@ -52,19 +75,22 @@ class ShowModel extends React.Component {
                             <table className="table table-striped" >
                                 <thead>
                                     <tr>
-                                        {SortedFields[itemk].map(item =>
+                                        {SortedFields[category].map(item =>
                                             <td key={item}><b>{item.toUpperCase()}</b></td>)}
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {Object.keys(this.props.data[itemk]).map((item, id) => (
+                                    {Object.keys(data[category]).map((item, id) => (
                                         <tr key={item}>
-                                            {Object.keys(this.props.data[itemk][item]).map(it =>
+                                            {Object.keys(data[category][item]).map(it =>
 
-                                                <td key={it}><p>{this.props.data[itemk][item][it]}</p></td>
+                                                <td key={it}>{data[category][item][it]}</td>
                                             )}
                                             <td>
-                                                <button className="btn btn-danger" onClick={() => this.handleDelete(item, itemk)}>delete</button>
+                                                <button className="btn btn-success" onClick={() => this.handleEdit(category, item, data[category][item])}>Edit</button>
+                                            </td>
+                                            <td>
+                                                <button className="btn btn-danger" onClick={() => this.handleDelete(category, item, data[category][item])}>delete</button>
                                             </td>
                                         </tr>
                                     ))}
@@ -72,9 +98,15 @@ class ShowModel extends React.Component {
                             </table>
                         </div>
 
+                        {(this.state.toggleEdit)
+                            ? <EditModal
+                                singleData={data[editItem][editKey]}
+                                editKey={editKey}
+                                imgKey={this.state.imgKey}
+                                editItem={editItem} /> : null}
                     </ModalBody>
                     <ModalFooter style={{ backgroundColor: '#dee2e6' }}>
-                        <Button color="primary" onClick={this.props.onCloseModal}>Cancel</Button>
+                        <Button value="Close" onclick={this.props.onCloseModal} />
                     </ModalFooter>
                 </Modal>
 

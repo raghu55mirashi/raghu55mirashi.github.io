@@ -3,13 +3,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelopeOpen, faMapMarkerAlt, faMobileAlt } from '@fortawesome/free-solid-svg-icons'
 import MyContext from '../../../store/MyContext'
 import { Tooltip } from 'reactstrap'
+import Swal from 'sweetalert2'
 
 export default class ContactMe extends Component {
     constructor(props) {
         super(props)
         this.state = {
             tooltipOpen: true,
-            success: false,
             errorMessage: '',
             username: '',
             email: '',
@@ -72,12 +72,16 @@ export default class ContactMe extends Component {
             }).then(res => {
                 if (res.status === 200) {
                     this.setState({
-                        success: true,
                         username: '',
                         email: '',
                         message: '',
                         subject: ''
                     })
+                    Swal.fire(
+                        'Message Sent!',
+                        ' ',
+                        'success'
+                    )
                 }
             })
         }
@@ -88,13 +92,13 @@ export default class ContactMe extends Component {
     }
 
     render() {
-        var alertMsg = null;
-        if (this.state.success) {
-            alertMsg = (
-                <div className="alert alert-success my-3">
-                    <strong> Message sent! Thank you, will contact you soon! </strong>
-                </div>)
-        }
+        // var alertMsg = null;
+        // if (this.state.success) {
+        //     alertMsg = (
+        //         <div className="alert alert-success my-3">
+        //             <strong> Message sent! Thank you, will contact you soon! </strong>
+        //         </div>)
+        // }
         const { username, email, message, subject } = this.state
 
         return (
@@ -135,7 +139,6 @@ export default class ContactMe extends Component {
                                                     <span></span>
                                                 </form>
 
-                                                {alertMsg}
                                             </div>
                                         </div>
                                         <div className="col-lg-4">
