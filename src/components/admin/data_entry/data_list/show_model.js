@@ -63,15 +63,15 @@ class ShowModel extends React.Component {
         }
         return (
             <React.Fragment>
-                <Modal isOpen={onOpenModal} id="field-modal">
-                    <ModalHeader className="justify-content-center" id="field-modal-header">
+                <Modal isOpen={onOpenModal} className="field-modal">
+                    <ModalHeader className="justify-content-center field-modal-header" id="">
                         {category.toUpperCase()}
-                        <div id="close">
-                            <button type="button" id="close-btn" className="btn" onClick={this.props.onCloseModal}>x</button>
+                        <div className="close">
+                            <button type="button" id="" className="btn close-btn" onClick={this.props.onCloseModal}>x</button>
                         </div>
                     </ModalHeader>
-                    <ModalBody id="field-modal-body">
-                        <div className="table-responsive" id="field-modal-body-div">
+                    <ModalBody className="field-modal-body">
+                        <div className="table-responsive field-modal-body-div" id="">
                             <table className="table table-striped" >
                                 <thead>
                                     <tr>

@@ -1,23 +1,23 @@
-#field-modal {
+.field-modal {
   z-index: 100;
   transition-timing-function: ease-in-out;
 
-  #field-modal-header {
+  .field-modal-header {
     background-color: #dee2e6;
     padding: 11px 1rem;
     height: 50px;
 
-    #close {
+    .close {
       right: 5px;
       top: 7px;
       position: absolute;
 
-      #close-btn {
+      .close-btn {
         border-radius: 80%;
       }
     }
   }
-  #field-modal-body {
+  .field-modal-body {
     background-color: #dee2e6;
     overflow: auto;
     border-bottom: 2px solid #fff;
@@ -25,7 +25,7 @@
     padding: 0 5px;
     height: 79vh;
 
-    #field-modal-body-div {
+    .field-modal-body-div {
       overflow: auto;
       height: 500px;
     }

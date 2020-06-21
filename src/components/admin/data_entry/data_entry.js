@@ -8,6 +8,7 @@ import './data_entry.scss'
 import FormFields from './form-fields/form-fields.json'
 import { auth, storage } from '../../../firebase/firebase'
 import { database } from '../../../firebase/firebase'
+import ShowMessageModal from './showMessageModal/showMessageModal'
 
 class DataEntry extends React.Component {
     state = {
@@ -17,6 +18,9 @@ class DataEntry extends React.Component {
         Experience: {},
         Links: {},
         Skills: {},
+        messages: {},
+        url: 'https://react-porfolio.firebaseio.com',
+        showMessageModal: false,
         image: null,    //this object used to upload image
         resume: null,   //this object used to upload file
         imageName: '',  //this variable used to create dynamic image name
@@ -130,6 +134,21 @@ class DataEntry extends React.Component {
         }
     }
 
+    showMessages() {
+        fetch(`${this.state.url}/contactus.json`)
+            .then(res => res.json())
+            .then(data => {
+                this.setState({
+                    messages: data,
+                    showMessageModal: true
+                })
+            })
+    }
+    hideMessageModal = () => {
+        this.setState({
+            showMessageModal: false
+        })
+    }
     reset = (item, e) => {
         document.getElementById(item.toString()).reset()
     }
@@ -138,11 +157,14 @@ class DataEntry extends React.Component {
     }
 
     render() {
+        const { showMessageModal, messages } = this.state
         return (
             <div className="container-fluid data-container">
                 <div className="data-form">
                     <div className="form-scroll">
                         <div className="signOut-div">
+                            <Button value="Messages"
+                                onclick={() => this.showMessages()} />{' '}
                             <Button value={`${this.props.currentUser.email}(Sign Out)`}
                                 onclick={() => auth.signOut()} />
                         </div>
@@ -182,6 +204,14 @@ class DataEntry extends React.Component {
                                 </div>
                             ))}
                         </Carousel>
+                        {showMessageModal
+                            ? <ShowMessageModal
+                                showMessageModal={showMessageModal}
+                                hideMessageModal={this.hideMessageModal}
+                                messages={messages}
+                            />
+                            : null}
+
                     </div>
                 </div>
             </div>
