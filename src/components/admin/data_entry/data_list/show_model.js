@@ -51,7 +51,7 @@ class ShowModel extends React.Component {
             editKey: editKey,
             imgKey: DataImage,
             toggleEdit: !this.state.toggleEdit
-        }, () => console.log(this.state))
+        })
 
     }
     render() {
@@ -83,7 +83,6 @@ class ShowModel extends React.Component {
                                     {Object.keys(data[category]).map((item, id) => (
                                         <tr key={item}>
                                             {Object.keys(data[category][item]).map(it =>
-
                                                 <td key={it}>{data[category][item][it]}</td>
                                             )}
                                             <td>
@@ -105,7 +104,7 @@ class ShowModel extends React.Component {
                                 imgKey={this.state.imgKey}
                                 editItem={editItem} /> : null}
                     </ModalBody>
-                    <ModalFooter style={{ backgroundColor: '#dee2e6' }}>
+                    <ModalFooter style={{ backgroundColor: '#dee2e6', padding: 'unset' }}>
                         <Button value="Close" onclick={this.props.onCloseModal} />
                     </ModalFooter>
                 </Modal>

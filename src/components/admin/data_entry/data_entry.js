@@ -7,6 +7,7 @@ import DataList from './data_list/data_list'
 import './data_entry.scss'
 import FormFields from './form-fields/form-fields.json'
 import { auth, storage } from '../../../firebase/firebase'
+import { database } from '../../../firebase/firebase'
 
 class DataEntry extends React.Component {
     state = {
@@ -50,7 +51,7 @@ class DataEntry extends React.Component {
 
             this.setState({
                 [sectionName]: ObjOfState
-            }, () => console.log(this.state))
+            })
         }
     }
     handleSubmit(sectionName, e) {
@@ -70,49 +71,61 @@ class DataEntry extends React.Component {
         if (!valid) {
             Swal.fire('Please fill all fields')
         } else {
-            const { image, resume, imageName, resumeName } = this.state
-            if (image) {
-                storage.ref(`images/${imageName}`).put(image)
-            }
-            if (resume) {
-                storage.ref(`resumes/${resumeName}`).put(resume)
-            }
-
-            let timerInterval
-            Swal.fire({
-                title: 'Data is Saving on Server...',
-                html: 'Wait for moment',
-                timer: 2000,
-                timerProgressBar: true,
-                onBeforeOpen: () => {
-                    Swal.showLoading()
-                }
-            }).then((result) => {
-                if (result.dismiss === Swal.DismissReason.timer) {
-                    console.log('I was closed by the timer')
-                }
-            })
-
-            if (sectionName in this.state) {
-                var ObjOfState = this.state[sectionName]
-
-                fetch(`https://react-porfolio.firebaseio.com/${sectionName}.json`, {
-                    method: 'POST',
-                    mode: 'cors',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(ObjOfState)
-                }).then(res => {
-                    if (res.status === 200) {
-                        console.log(res)
+            //for Personal data to check whether it exists
+            var PersonalData_exits;
+            if (sectionName === 'Personal') {
+                database.ref(`Personal`).limitToFirst(1).once("value", snapshot => {
+                    if (snapshot.exists()) {
+                        PersonalData_exits = true;
+                        Swal.fire('Data Exists! Only one record is allowed, please update data')
                         this.setState({
                             [sectionName]: {}
                         })
                         document.getElementById(sectionName.toString()).reset()
-                        clearInterval(timerInterval)
+                        return true;
+                    }
+                });
+            }
+
+            if ((sectionName === 'Personal' && PersonalData_exits) || sectionName !== 'Personal') {
+                const { image, resume, imageName, resumeName } = this.state
+                if (image) {
+                    storage.ref(`images/${imageName}`).put(image)
+                }
+                if (resume) {
+                    storage.ref(`resumes/${resumeName}`).put(resume)
+                }
+
+                Swal.fire({
+                    title: 'Data is Saving on Server...',
+                    html: 'Wait for moment',
+                    timerProgressBar: true,
+                    onBeforeOpen: () => {
+                        Swal.showLoading()
                     }
                 })
+
+
+                if (sectionName in this.state) {
+                    var ObjOfState = this.state[sectionName]
+
+                    fetch(`https://react-porfolio.firebaseio.com/${sectionName}.json`, {
+                        method: 'POST',
+                        mode: 'cors',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(ObjOfState)
+                    }).then(res => {
+                        if (res.status === 200) {
+                            this.setState({
+                                [sectionName]: {}
+                            })
+                            document.getElementById(sectionName.toString()).reset()
+                            Swal.close()
+                        }
+                    })
+                }
             }
         }
     }

@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelopeOpen, faMapMarkerAlt, faMobileAlt } from '@fortawesome/free-solid-svg-icons'
 import MyContext from '../../../store/MyContext'
-import { Tooltip } from 'reactstrap'
 import Swal from 'sweetalert2'
 
 export default class ContactMe extends Component {
@@ -78,12 +77,14 @@ export default class ContactMe extends Component {
                         subject: ''
                     })
                     Swal.fire(
-                        'Message Sent!',
+                        'Message Sent! Will Contact you soon',
                         ' ',
                         'success'
                     )
                 }
             })
+        } else {
+            Swal.fire('Please fill fields with atleast 3 characters')
         }
     }
 
@@ -116,10 +117,6 @@ export default class ContactMe extends Component {
                                                     <textarea title={this.state.errorMessage} name="message" id="message" cols="50" rows="5" placeholder="Message"
                                                         className="form-control" style={{ marginBottom: '10px' }}
                                                         onChange={this.handleChange} ref={this.refmsg} value={message} />
-
-                                                    <Tooltip placement="top" isOpen={this.tooltipOpen} target="message" toggle={this.toggle}>
-                                                        Please enter your message
-                                             </Tooltip>
 
                                                     <input type="text" title={this.state.errorMessage} name="username" placeholder="Username"
                                                         className="form-control" style={{ marginRight: "4%" }}

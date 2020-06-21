@@ -3,17 +3,17 @@
     "firstName",
     "lastName",
     "address",
-    "birthDate",
     "designation",
     "email",
-    "nationality",
     "phone",
+    "nationality",
     "speakingLanguages",
     "summary",
     "blogUrl",
     "latestTech",
-    "image",
-    "resume"
+    "birthDate",
+    "resume",
+    "image"
   ],
   "Portfolio": [
     "projectName",
@@ -21,18 +21,18 @@
     "technology",
     "description",
     "duration",
+    "siteUrl",
     "createdOn",
-    "image",
-    "siteUrl"
+    "image"
   ],
   "Education": ["course", "degree", "passYear", "university"],
   "Experience": [
     "company",
     "designation",
     "duration",
-    "joined",
     "summary",
-    "technology"
+    "technology",
+    "joined"
   ],
   "Links": ["siteName", "siteUrl"],
   "Skills": ["subject", "stars"]

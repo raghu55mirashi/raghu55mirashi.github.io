@@ -2,9 +2,9 @@ import React from 'react'
 
 import './form-input.scss'
 
-const FormInput = ({ name, placeholder, handleChange, value }) => {
-    let str = placeholder.split(/(?=[A-Z])/).join(' ')
-    let modifiedStr = placeholder.charAt(0).toUpperCase() + str.slice(1)
+const FormInput = ({ name, placeholder, handleChange, value, editFormControl }) => {
+    let str = placeholder.split(/(?=[A-Z])/).join(' ').slice(1)
+    let modifiedStr = placeholder.charAt(0).toUpperCase() + str
 
     var types = 'text'
     if (name === 'email') {
@@ -17,20 +17,32 @@ const FormInput = ({ name, placeholder, handleChange, value }) => {
         value={value}
         className="form-control formcontrol"
         onChange={handleChange}
+        title={`Select Your ${name}`}
     />
     if (name === 'address' || name === 'summary') {
         input = <textarea placeholder={modifiedStr} value={value}
             className="form-control textarea" onChange={handleChange}
-            name={name} rows="4" cols="50" />
+            name={name} rows="4" cols="50" title={`Select Your ${name}`} />
     }
+    var label = !value
+        ? (<label id="custom-label">{modifiedStr}</label>) : ''
     if (name === 'image' || name === 'resume') {
         input = <span>
-            <label style={{ padding: "4px 20px", backgroundColor: "#283054", color: '#6c757d' }}>Select {modifiedStr}</label>
+            {label}
             <input type="file"
                 name={name}
-                className="formcontrol"
-                // value={value}
-                onChange={handleChange} title="Select Your Image" />
+                className={`${editFormControl ? 'editFormContrl' : ''} formcontrol`}
+                onChange={handleChange} title={`Select Your ${name}`} />
+        </span>
+    }
+    if (name === 'birthDate' || name === 'createdOn' || name === 'joined') {
+        input = <span>
+            {label}
+            <input type="date"
+                name={name}
+                className={`${editFormControl ? 'editFormContrl' : ''} formcontrol`}
+                onChange={handleChange}
+                title={`Select Your ${name}`} />
         </span>
     }
     return (
