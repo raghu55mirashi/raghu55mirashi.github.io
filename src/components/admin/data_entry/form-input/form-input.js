@@ -2,7 +2,7 @@ import React from 'react'
 
 import './form-input.scss'
 
-const FormInput = ({ name, placeholder, handleChange, value, editFormControl }) => {
+const FormInput = ({ name, placeholder, handleChange, value }) => {
     let str = placeholder.split(/(?=[A-Z])/).join(' ').slice(1)
     let modifiedStr = placeholder.charAt(0).toUpperCase() + str
 
@@ -24,26 +24,34 @@ const FormInput = ({ name, placeholder, handleChange, value, editFormControl }) 
             className="form-control textarea" onChange={handleChange}
             name={name} rows="4" cols="50" title={`Select Your ${name}`} />
     }
+
     var label = !value
-        ? (<label id="custom-label">{modifiedStr}</label>) : ''
+        ? (<div className="input-group-prepend">
+            <span className="input-group-text">{modifiedStr}</span>
+        </div>) : ''
+
     if (name === 'image' || name === 'resume') {
-        input = <span>
+        input = <div className="input-group mb-3">
             {label}
-            <input type="file"
-                name={name}
-                className={`${editFormControl ? 'editFormContrl' : ''} formcontrol`}
-                onChange={handleChange} title={`Select Your ${name}`} />
-        </span>
+            <div className="custom-file">
+                <input type="file" className="custom-file-input"
+                    name={name} id="inputGroupFile01"
+                    onChange={handleChange} title={`Select Your ${name}`} />
+                <label className="custom-file-label" htmlFor="inputGroupFile01"></label>
+            </div>
+        </div>
     }
     if (name === 'birthDate' || name === 'createdOn' || name === 'joined') {
-        input = <span>
+        input = <div className="input-group mb-3">
             {label}
-            <input type="date"
-                name={name}
-                className={`${editFormControl ? 'editFormContrl' : ''} formcontrol`}
-                onChange={handleChange}
-                title={`Select Your ${name}`} />
-        </span>
+            <div className="custom-file">
+                <input type="date" className="custom-file-input"
+                    name={name} id="inputGroupFile2"
+                    onChange={handleChange}
+                    title={`Select Your ${name}`} />
+                <label className="custom-file-label" htmlFor="inputGroupFile2"></label>
+            </div>
+        </div>
     }
     return (
         <React.Fragment>

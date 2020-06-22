@@ -6,40 +6,38 @@
   border: 1px solid #262e53 !important;
 }
 
-$breakpoint-mobile: 390px;
-#custom-label {
-  padding: 7px 13px;
-  background-color: #283054;
-  color: #6c757d;
-
-  @media (max-width: $breakpoint-mobile) {
-    padding: 6px 0 6px 10px;
-  }
-}
-
-input[type='date']:not(.editFormContrl) {
-  padding: 5px 85px;
-
-  @media (max-width: $breakpoint-mobile) {
-    padding: 4px 0;
-    width: 218px;
-  }
-}
-input[type='file']:not(.editFormContrl) {
-  width: 364px;
-  padding: 3px 0;
-
-  @media (max-width: $breakpoint-mobile) {
-    padding: 2px 0;
-    width: 243px;
-  }
+input[type='date'] {
+  border: none !important;
+  padding: 0 30px !important;
 }
 
 .editFormContrl {
-  width: 462px;
   padding: 5px;
+}
 
-  @media (max-width: $breakpoint-mobile) {
-    width: 309px !important;
-  }
+.filecontrol {
+  color: #fff !important;
+  background-color: #283054 !important;
+  border: 1px solid #262e53 !important;
+}
+
+.custom-file-input {
+  height: unset !important;
+  opacity: 1 !important;
+  background-color: #fff !important;
+}
+
+.custom-file-input:lang(en) ~ .custom-file-label::after {
+  content: unset !important;
+}
+
+.input-group-text {
+  color: #828a92 !important;
+  background-color: #262e53 !important;
+  border: none !important;
+}
+
+.custom-file-label {
+  background-color: #283054 !important;
+  border: unset !important;
 }

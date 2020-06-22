@@ -114,8 +114,8 @@ export default class ContactMe extends Component {
                                         <div className="col-lg-8">
                                             <div className="contact-form">
                                                 <form onSubmit={this.handleSubmit} id="post">
-                                                    <textarea title={this.state.errorMessage} name="message" id="message" cols="50" rows="5" placeholder="Message"
-                                                        className="form-control" style={{ marginBottom: '10px' }}
+                                                    <textarea name="message" id="message" cols="50" rows="5" maxlength="300" placeholder="Message"
+                                                        className="form-control" style={{ marginBottom: '10px' }} title="Maximum of 300 characters can use"
                                                         onChange={this.handleChange} ref={this.refmsg} value={message} />
 
                                                     <input type="text" title={this.state.errorMessage} name="username" placeholder="Username"

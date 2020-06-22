@@ -121,21 +121,19 @@ class EditModal extends Component {
                         <ModalBody style={{ maxHeight: "77vh", overflow: 'auto' }}>
                             <div className={`data-form-inner ${editItem}`} >
                                 {Object.entries(this.state.record).map(([key, value]) => (
-                                    (key !== 'image' || key !== 'resume')
+                                    (key !== 'image' || key !== 'resume' || key !== 'birthData' || key !== 'createdOn' || key !== 'joined')
                                         ? (<React.Fragment key={`${editItem}_${key}`}>
                                             <label style={{ display: "block" }}>{key.charAt(0).toUpperCase() + key.split(/(?=[A-Z])/).join(' ').slice(1)}</label>
                                             <FormInput
                                                 name={key}
                                                 value={value}
                                                 placeholder={key}
-                                                editFormControl="true"
                                                 handleChange={(e) => this.handleChange(e)} />
                                         </React.Fragment>)
                                         : (<React.Fragment>
                                             <label style={{ display: "block" }}>{key}</label>
                                             <FormInput key={`${editItem}_${key}`}
                                                 name={key}
-                                                editFormControl="true"
                                                 placeholder={key}
                                                 handleChange={(e) => this.handleChange(e)} />
                                         </React.Fragment>)
