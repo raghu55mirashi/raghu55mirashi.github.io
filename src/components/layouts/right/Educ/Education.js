@@ -11,7 +11,7 @@ const Education = () => (
                     <div className="card" style={{ boxShadow: "0 5px 11px #ccc", overflow: 'auto' }}>
                         <div className="card-header"><FontAwesomeIcon icon={faGraduationCap} />{' '}EDUCATION</div>
                         <span>
-                            {Object.keys(context.Education).map((item, id) =>
+                            {(context.Education) ? Object.keys(context.Education).map((item, id) =>
                                 <div key={id} className="card-body" style={{ paddingBottom: "0" }}>
                                     <div className="header1">
                                         <h6><span>{context.Education[item].degree.toUpperCase()} </span>- {context.Education[item].course.toUpperCase()}</h6>
@@ -20,8 +20,8 @@ const Education = () => (
                                         <h6>{context.Education[item].university}</h6>
                                     </div>
                                     <hr />
-                                </div>)
-                            }
+                                </div>
+                            ) : <div className="card-body">Record Not Available</div>}
                         </span>
                     </div>
                 </div>

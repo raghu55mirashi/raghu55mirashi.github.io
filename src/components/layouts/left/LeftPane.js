@@ -9,7 +9,7 @@ export default class LeftPane extends Component {
             <MyContext.Consumer>
                 {context => (
                     <React.Fragment>
-                        {Object.keys(context.Personal).map((item, id) => (
+                        {(context.Personal) ? Object.keys(context.Personal).map((item, id) => (
                             <span key={id}>
                                 <div className="card" style={{ border: 'unset' }}>
                                     <div className="card-header" style={{ padding: 'unset', border: 'unset', backgroundColor: '#e9ecef' }}>
@@ -23,8 +23,8 @@ export default class LeftPane extends Component {
                                 <div className="card current">
                                     <div className="card-header">{context.Personal[item].latestTech}</div>
                                 </div>
-                            </span>))
-                        }
+                            </span>
+                        )) : <div className="card">Record Not Available</div>}
                     </React.Fragment>
                 )}
             </MyContext.Consumer>

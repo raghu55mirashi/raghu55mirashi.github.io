@@ -11,7 +11,7 @@ const Experience = () => (
                     <div className="card" style={{ boxShadow: "0 5px 11px #ccc", overflow: 'auto' }}>
                         <div className="card-header">
                             <FontAwesomeIcon icon={faTasks} />{' '}EXPERIENCE</div>
-                        {Object.keys(context.Experience).map((item, id) => (
+                        {(context.Experience) ? Object.keys(context.Experience).map((item, id) => (
                             <div key={id} className="card-body" style={{ paddingBottom: 0 }}>
                                 <div className="header1">
                                     <h6><span>{context.Experience[item].designation} </span>- {context.Experience[item].company}</h6>
@@ -21,8 +21,7 @@ const Experience = () => (
                                 </div>
                                 <hr />
                             </div>
-                        ))
-                        }
+                        )) : <div className="card-body">Record Not Available</div>}
                     </div>
                 </div>
             </React.Fragment>

@@ -13,15 +13,14 @@ const Skills = () => (
                         <div className="card-body">
                             <table className="table">
                                 <tbody className="row">
-                                    {Object.keys(context.Skills).map((item, id) => (
+                                    {(context.Skills) ? Object.keys(context.Skills).map((item, id) => (
                                         <tr key={id} className="col-6 card" style={{ boxSizing: "border-box", boxShadow: "0px 1px 7px 2px #ccc" }}>
                                             <td align="center">
                                                 <h6 >{context.Skills[item].subject}</h6>
                                                 <p>{context.Skills[item].stars}</p>
                                             </td>
                                         </tr>
-                                    )
-                                    )}
+                                    )) : <div className="col-6 card">Record Not Available</div>}
                                 </tbody>
                             </table>
                         </div>

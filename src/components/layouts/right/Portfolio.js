@@ -47,7 +47,7 @@ export default class Portfolio extends Component {
                                 MY{' '}<span>PORTFOLIO</span>
                             </h1>
                             <hr style={{ width: "200px" }} />
-                            {Object.keys(context.Portfolio).map((item, id) => (
+                            {(context.Portfolio) ? Object.keys(context.Portfolio).map((item, id) => (
                                 <div key={id} className="card" style={{ marginBottom: "15px", boxShadow: "0 5px 11px #ccc" }}>
                                     <div className="card-header" style={{ paddingBottom: 0, paddingTop: "5px" }}>
                                         <h5>{context.Portfolio[item].projectName}</h5>
@@ -116,7 +116,7 @@ export default class Portfolio extends Component {
                                     </Modal>
 
                                 </div>
-                            ))}
+                            )) : <div className="card">Record Not Available</div>}
                         </div>
                     </React.Fragment>
                 )}

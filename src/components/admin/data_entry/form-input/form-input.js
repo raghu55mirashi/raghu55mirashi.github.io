@@ -35,9 +35,9 @@ const FormInput = ({ name, placeholder, handleChange, value }) => {
             {label}
             <div className="custom-file">
                 <input type="file" className="custom-file-input"
-                    name={name} id="inputGroupFile01"
+                    name={name}
                     onChange={handleChange} title={`Select Your ${name}`} />
-                <label className="custom-file-label" htmlFor="inputGroupFile01"></label>
+                <label className="custom-file-label"></label>
             </div>
         </div>
     }
@@ -46,10 +46,10 @@ const FormInput = ({ name, placeholder, handleChange, value }) => {
             {label}
             <div className="custom-file">
                 <input type="date" className="custom-file-input"
-                    name={name} id="inputGroupFile2"
+                    name={name}
                     onChange={handleChange}
                     title={`Select Your ${name}`} />
-                <label className="custom-file-label" htmlFor="inputGroupFile2"></label>
+                <label className="custom-file-label"></label>
             </div>
         </div>
     }

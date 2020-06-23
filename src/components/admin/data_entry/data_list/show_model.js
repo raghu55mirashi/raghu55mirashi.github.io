@@ -36,12 +36,22 @@ class ShowModel extends React.Component {
                             console.log(error)
                         })
                 }
-                database.ref(category + '/' + item).remove()
-                Swal.fire(
-                    'Deleted!',
-                    'Your record has been deleted.',
-                    'success'
-                )
+                if (imgData['resume']) {
+                    storage
+                        .ref(`resumes/${imgData['resume']}`)
+                        .delete()
+                        .then((error) => {
+                            console.log(error)
+                        })
+                }
+                const res = database.ref(category + '/' + item).remove()
+                if (res) {
+                    Swal.fire(
+                        'Deleted!',
+                        'Your record has been deleted.',
+                        'success'
+                    )
+                }
             }
         })
     }
@@ -61,6 +71,8 @@ class ShowModel extends React.Component {
         if (!itemKey) {
             category = 'Personal'
         }
+
+        let alert = (category === 'Personal') ? (<tr><td colSpan={5} style={{ color: 'red' }}>Please keep only one record for Personal info</td></tr>) : null
         return (
             <React.Fragment>
                 <Modal isOpen={onOpenModal} className="field-modal">
@@ -80,7 +92,7 @@ class ShowModel extends React.Component {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {Object.keys(data[category]).map((item, id) => (
+                                    {(data[category]) ? Object.keys(data[category]).map((item, id) => (
                                         <tr key={item}>
                                             {Object.keys(data[category][item]).map(it =>
                                                 <td key={it}>{data[category][item][it]}</td>
@@ -92,7 +104,8 @@ class ShowModel extends React.Component {
                                                 <button className="btn btn-danger" onClick={() => this.handleDelete(category, item, data[category][item])}>delete</button>
                                             </td>
                                         </tr>
-                                    ))}
+                                    )) : <tr><th colSpan={2}>Record Not available!</th></tr>}
+                                    {alert}
                                 </tbody>
                             </table>
                         </div>

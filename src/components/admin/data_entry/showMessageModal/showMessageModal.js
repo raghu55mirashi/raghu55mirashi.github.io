@@ -12,6 +12,7 @@ class ShowMessageModal extends React.Component {
             url: 'https://react-porfolio.firebaseio.com'
         }
     }
+
     componentDidMount() {
         this.setState({
             messages: this.props.messages
@@ -62,14 +63,14 @@ class ShowMessageModal extends React.Component {
         return (
             <React.Fragment>
                 <Modal isOpen={showMessageModal} className="field-modal">
-                    <ModalHeader className="justify-content-center field-modal-header" id="">
+                    <ModalHeader className="justify-content-center field-modal-header">
                         Contacts
                         <div className="close">
-                            <button type="button" id="" className="btn close-btn" onClick={this.props.hideMessageModal}>x</button>
+                            <button type="button" className="btn close-btn" onClick={hideMessageModal}>x</button>
                         </div>
                     </ModalHeader>
                     <ModalBody className="field-modal-body">
-                        <div className="table-responsive field-modal-body-div" id="">
+                        <div className="table-responsive field-modal-body-div" >
                             <table className="table table-striped" >
                                 <thead>
                                     <tr>

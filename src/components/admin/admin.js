@@ -32,7 +32,6 @@ class Admin extends Component {
                     errorMessage: ''
                 })
             } catch (error) {
-                console.log(error)
                 this.setState({
                     errorMessage: error.message
                 })

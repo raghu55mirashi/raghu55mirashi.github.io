@@ -114,7 +114,7 @@ export default class ContactMe extends Component {
                                         <div className="col-lg-8">
                                             <div className="contact-form">
                                                 <form onSubmit={this.handleSubmit} id="post">
-                                                    <textarea name="message" id="message" cols="50" rows="5" maxlength="300" placeholder="Message"
+                                                    <textarea name="message" id="message" cols="50" rows="5" maxLength="300" placeholder="Message"
                                                         className="form-control" style={{ marginBottom: '10px' }} title="Maximum of 300 characters can use"
                                                         onChange={this.handleChange} ref={this.refmsg} value={message} />
 
@@ -141,11 +141,11 @@ export default class ContactMe extends Component {
                                         <div className="col-lg-4">
                                             <div className="address">
                                                 <hr />
-                                                {Object.keys(context.Personal).map((item, id) =>
+                                                {(context.Personal) ? Object.keys(context.Personal).map((item, id) =>
                                                     (<span key={id}><p><FontAwesomeIcon icon={faMapMarkerAlt} />{' '}{context.Personal[item].address}</p>
                                                         <p><FontAwesomeIcon icon={faEnvelopeOpen} />{' '}{context.Personal[item].email}</p>
                                                         <p><FontAwesomeIcon icon={faMobileAlt} />{' '}{context.Personal[item].phone}</p></span>)
-                                                )}
+                                                ) : <div>Record Not Available</div>}
                                                 <hr />
                                             </div>
                                         </div>

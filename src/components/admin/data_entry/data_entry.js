@@ -7,7 +7,6 @@ import DataList from './data_list/data_list'
 import './data_entry.scss'
 import FormFields from './form-fields/form-fields.json'
 import { auth, storage } from '../../../firebase/firebase'
-import { database } from '../../../firebase/firebase'
 import ShowMessageModal from './showMessageModal/showMessageModal'
 
 class DataEntry extends React.Component {
@@ -27,6 +26,9 @@ class DataEntry extends React.Component {
         resumeName: ''  //this variable used to create dynamic image name
 
     }
+
+    abortController = new AbortController()
+
     handleChange(sectionName, e) {
         var { name, value } = e.target
 
@@ -58,6 +60,7 @@ class DataEntry extends React.Component {
             })
         }
     }
+
     handleSubmit(sectionName, e) {
         e.preventDefault()
         const inputs = document.querySelectorAll(`#${sectionName} input`)
@@ -76,78 +79,93 @@ class DataEntry extends React.Component {
             Swal.fire('Please fill all fields')
         } else {
             //for Personal data to check whether it exists
-            var PersonalData_exits;
-            if (sectionName === 'Personal') {
-                database.ref(`Personal`).limitToFirst(1).once("value", snapshot => {
-                    if (snapshot.exists()) {
-                        PersonalData_exits = true;
-                        Swal.fire('Data Exists! Only one record is allowed, please update data')
+            // var PersonalData_exits;
+            // if (sectionName === 'Personal') {
+
+            // database.ref(`Personal`).limitToFirst(1).once("value", snapshot => {
+            //     if (snapshot.exists()) {
+            //         PersonalData_exits = false;
+            //         Swal.fire('Data Exists! Only one record is allowed, please update data')
+            //         this.setState({
+            //             [sectionName]: {}
+            //         })
+            //         document.getElementById(sectionName.toString()).reset()
+            //         return false;
+            //     }
+            //     PersonalData_exits = true;
+            // }).then(res => console.log(res)
+            // )
+            // }
+
+            // if ((sectionName === 'Personal' && PersonalData_exits) || sectionName !== 'Personal') {
+
+            Swal.fire({
+                title: 'Data is Saving on Server...',
+                html: 'Wait for moment',
+                timerProgressBar: true,
+                onBeforeOpen: () => {
+                    Swal.showLoading()
+                }
+            })
+
+
+            if (sectionName in this.state) {
+                var ObjOfState = this.state[sectionName]
+
+                fetch(`https://react-porfolio.firebaseio.com/${sectionName}.json`, {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(ObjOfState)
+                }).then(res => {
+                    if (res.status === 200) {
+                        const { image, resume, imageName, resumeName } = this.state
+                        if (image) {
+                            storage.ref(`images/${imageName}`).put(image)
+                        }
+                        if (resume) {
+                            storage.ref(`resumes/${resumeName}`).put(resume)
+                        }
                         this.setState({
                             [sectionName]: {}
                         })
                         document.getElementById(sectionName.toString()).reset()
-                        return true;
-                    }
-                });
-            }
-
-            if ((sectionName === 'Personal' && PersonalData_exits) || sectionName !== 'Personal') {
-                const { image, resume, imageName, resumeName } = this.state
-                if (image) {
-                    storage.ref(`images/${imageName}`).put(image)
-                }
-                if (resume) {
-                    storage.ref(`resumes/${resumeName}`).put(resume)
-                }
-
-                Swal.fire({
-                    title: 'Data is Saving on Server...',
-                    html: 'Wait for moment',
-                    timerProgressBar: true,
-                    onBeforeOpen: () => {
-                        Swal.showLoading()
+                        Swal.close()
                     }
                 })
-
-
-                if (sectionName in this.state) {
-                    var ObjOfState = this.state[sectionName]
-
-                    fetch(`https://react-porfolio.firebaseio.com/${sectionName}.json`, {
-                        method: 'POST',
-                        mode: 'cors',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(ObjOfState)
-                    }).then(res => {
-                        if (res.status === 200) {
-                            this.setState({
-                                [sectionName]: {}
-                            })
-                            document.getElementById(sectionName.toString()).reset()
-                            Swal.close()
-                        }
-                    })
-                }
             }
         }
     }
 
-    showMessages() {
-        fetch(`${this.state.url}/contactus.json`)
+    componentDidMount() {
+        fetch(`${this.state.url}/contactus.json`, { signal: this.abortController.signal })
             .then(res => res.json())
             .then(data => {
                 this.setState({
-                    messages: data,
-                    showMessageModal: true
+                    messages: data
                 })
             })
     }
+
+    componentWillUnmount() {
+        this.abortController.abort()
+        this.setState(prevState => ({
+            showMessageModal: !prevState.showMessageModal
+        }))
+    }
+
+    showMessages() {
+        this.setState(prevState => ({
+            showMessageModal: !prevState.showMessageModal
+        }))
+    }
+
     hideMessageModal = () => {
-        this.setState({
-            showMessageModal: false
-        })
+        this.setState(prevState => ({
+            showMessageModal: !prevState.showMessageModal
+        }))
     }
     reset = (item, e) => {
         document.getElementById(item.toString()).reset()

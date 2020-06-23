@@ -7,7 +7,7 @@ const AboutMe = () => (
     <MyContext.Consumer>
         {context => (
             <React.Fragment >
-                {Object.keys(context.Personal).map(item => (
+                {(context.Personal) ? Object.keys(context.Personal).map(item => (
                     <div key={item} className="card about ab" style={{ boxShadow: "0 5px 11px #ccc" }}>
                         <h1>
                             ABOUT <span>ME</span>
@@ -75,7 +75,7 @@ const AboutMe = () => (
                         </div>
                         <br />
                     </div>
-                ))}
+                )) : <div className="card about ab">Record Not Available</div>}
             </React.Fragment>
         )}
     </MyContext.Consumer>

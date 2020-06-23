@@ -9,7 +9,7 @@ const Home = () => (
     <MyContext.Consumer>
         {context => (
             <React.Fragment>
-                {Object.keys(context.Personal).map(item => (
+                {(context.Personal) ? Object.keys(context.Personal).map(item => (
                     <div key={item} className="home">
                         <h2> Hi ! I'M {context.Personal[item].firstName ? context.Personal[item].firstName.toUpperCase() : ''}</h2>
                         <br />
@@ -21,7 +21,7 @@ const Home = () => (
                             href={!(context.Personal[item].resume) ? '' : getImageURL(context.Personal[item].resume)} target="_blank" rel="noopener noreferrer" download>
                             <FontAwesomeIcon icon={faDownload} />{' '}My Resume</a>
                     </div>
-                ))}
+                )) : <div className="home">Record Not Available</div>}
 
             </React.Fragment>
         )}
