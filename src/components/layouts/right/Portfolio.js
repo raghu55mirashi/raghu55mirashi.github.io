@@ -42,7 +42,7 @@ export default class Portfolio extends Component {
             <MyContext.Consumer>
                 {context => (
                     <React.Fragment>
-                        <div className="about" style={{ overflow: "auto", backgroundColor: 'transparent' }} >
+                        <div className="about" style={{ overflow: "auto", backgroundColor: 'transparent', height: '81vh' }} >
                             <h1>
                                 MY{' '}<span>PORTFOLIO</span>
                             </h1>
