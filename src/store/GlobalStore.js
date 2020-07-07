@@ -13,7 +13,8 @@ export default class GlobalStore extends Component {
             Experience: {},
             Skills: {},
             url: 'https://react-porfolio.firebaseio.com',
-            error: false
+            error: false,
+            loading: true
         }
         this.fetch_data = this.fetch_data.bind(this)
     }
@@ -43,7 +44,8 @@ export default class GlobalStore extends Component {
                 Links,
                 Education,
                 Experience,
-                Skills
+                Skills,
+                loading: false
             })
         } catch (error) {
             this.setState({ error })
