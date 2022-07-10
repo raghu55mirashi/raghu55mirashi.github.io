@@ -1,4 +1,5 @@
 import { storage } from '../../../firebase/firebase'
+import { ref, getDownloadURL } from "firebase/storage";
 import React, { useState } from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -13,18 +14,22 @@ const GetImageURL = ({ urlName }) => {
     var customUrl;
     const docType = urlName.split('.').pop().toLowerCase()
     if (docType === 'pdf' || docType === 'doc') {
-        storage.ref('resumes').child(urlName).getDownloadURL().then(url => {
-            setDocUrl(url)
-        })
+        const storeRef = ref(storage, 'resumes/' + urlName);
+        getDownloadURL(storeRef)
+            .then((url) => {
+                setDocUrl(url)
+            });
         customUrl = <a className="btn btn1" style={{ border: "1px solid #fff" }}
             href={docUrl} target="_blank" rel="noopener noreferrer" download>
             <FontAwesomeIcon icon={faDownload} />{' '}My Resume</a>
     }
     if (docType === 'jpg' || docType === 'png' || docType === 'jpeg') {
-        storage.ref('images').child(urlName).getDownloadURL().then(url => {
-            setImgUrl(url)
-            setLoading(false)
-        })
+        const storeRef = ref(storage, 'images/' + urlName);
+        getDownloadURL(storeRef)
+            .then((url) => {
+                setImgUrl(url);
+                setLoading(false)
+            });
         customUrl =
             loading ? <Spinner /> : <img src={imgUrl} alt="no pics" className="rounded img-fluid" />
     }

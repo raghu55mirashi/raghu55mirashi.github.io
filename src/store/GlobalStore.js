@@ -2,28 +2,23 @@ import React, { Component } from 'react'
 import MyContext from './MyContext'
 
 export default class GlobalStore extends Component {
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            Personal: {},
-            Portfolio: {},
-            Links: {},
-            Education: {},
-            Experience: {},
-            Skills: {},
-            url: 'https://react-porfolio.firebaseio.com',
-            error: false,
-            loading: true
-        }
-        this.fetch_data = this.fetch_data.bind(this)
+    state = {
+        Personal: {},
+        Portfolio: {},
+        Links: {},
+        Education: {},
+        Experience: {},
+        Skills: {},
+        url: 'https://react-porfolio.firebaseio.com',
+        error: false,
+        loading: true
     }
 
-    componentDidMount() {
-        this.fetch_data()
+    componentDidMount = async () => {
+        await this.fetch_data()
     }
 
-    async fetch_data() {
+    fetch_data = async () => {
 
         const urls = [
             'Personal',

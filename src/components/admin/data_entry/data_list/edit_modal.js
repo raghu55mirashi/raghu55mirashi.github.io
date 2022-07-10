@@ -12,7 +12,8 @@ class EditModal extends Component {
         image: null,
         resume: null,
         imageName: '',  //this variable used to create dynamic image name
-        resumeName: ''  //this variable used to create dynamic image name
+        resumeName: '',  //this variable used to create dynamic image name
+        error: null
     }
 
     componentDidMount() {
@@ -26,6 +27,7 @@ class EditModal extends Component {
             modal: !this.state.modal
         })
     }
+
     handleChange = e => {
         var { name, value } = e.target
         if ((name === 'image' || name === 'resume') && e.target.files[0]) {
@@ -34,17 +36,32 @@ class EditModal extends Component {
             const dynamicDate = d.getTime()
             var imageName = '';
             var resumeName = '';
+            const imgTypes = ['image/png', 'image/jpeg']
             if (name === 'image') {
-                imageName = dynamicDate + e.target.files[0].name
-                this.setState({ imageName })
+                if (imgTypes.includes(e.target.files[0].type)) {
+                    imageName = dynamicDate + e.target.files[0].name
+                    this.setState({ imageName, [name]: value, error: null })
+                } else {
+                    this.setState({
+                        imageName: '',
+                        [name]: '',
+                        error: 'Please select an image file (jpeg or png)'
+                    }, () => { alert(this.state.error) })
+                }
             }
+            const fileTypes = ['application/pdf']
             if (name === 'resume') {
-                resumeName = dynamicDate + e.target.files[0].name
-                this.setState({ resumeName })
+                if (fileTypes.includes(e.target.files[0].type)) {
+                    resumeName = dynamicDate + e.target.files[0].name
+                    this.setState({ resumeName, [name]: value, error: null })
+                } else {
+                    this.setState({
+                        resumeName: '',
+                        [name]: '',
+                        error: 'Please select an pdf file'
+                    }, () => { alert(this.state.error) })
+                }
             }
-            this.setState({
-                [name]: value    //keeping state to use for submission of files
-            })
             value = dynamicDate + e.target.files[0].name
         }
 

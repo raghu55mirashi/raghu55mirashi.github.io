@@ -38,17 +38,35 @@ class DataEntry extends React.Component {
             const dynamicDate = d.getTime()
             var imageName = '';
             var resumeName = '';
+            const imgTypes = ['image/png', 'image/jpeg']
             if (name === 'image') {
-                imageName = dynamicDate + e.target.files[0].name
-                this.setState({ imageName })
+                if (imgTypes.includes(e.target.files[0].type)) {
+                    imageName = dynamicDate + e.target.files[0].name
+                    this.setState({ imageName, [name]: value, error: null })
+                } else {
+                    this.setState({
+                        imageName: '',
+                        [name]: '',
+                        error: 'You have not selected image(jpeg or png)'
+                    }, () => { alert(this.state.error) })
+                }
             }
+            const fileTypes = ['application/pdf']
             if (name === 'resume') {
-                resumeName = dynamicDate + e.target.files[0].name
-                this.setState({ resumeName })
+                if (fileTypes.includes(e.target.files[0].type)) {
+                    resumeName = dynamicDate + e.target.files[0].name
+                    this.setState({ resumeName, [name]: value, error: null })
+                } else {
+                    this.setState({
+                        resumeName: '',
+                        [name]: '',
+                        error: 'You have not selected an pdf file'
+                    }, () => { alert(this.state.error) })
+                }
             }
-            this.setState({
-                [name]: value   //keeping state to use for submission of files
-            })
+            // this.setState({
+            //     [name]: value   //keeping state to use for submission of files
+            // })
             value = dynamicDate + e.target.files[0].name
         }
         if (sectionName in this.state) {

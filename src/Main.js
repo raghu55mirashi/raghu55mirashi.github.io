@@ -1,20 +1,30 @@
-import React, { useContext } from 'react'
+import React, { useContext, lazy, Suspense } from 'react'
 import { HashRouter as Router, Switch, Route, NavLink } from 'react-router-dom'
-import './App.css';
-import LeftPane from './components/layouts/left/LeftPane'
-import Home from './components/layouts/right/Home'
-import AboutMe from './components/layouts/right/AboutMe'
-import EduExpSkill from './components/layouts/right/EduExpSkill'
-import Portfolio from './components/layouts/right/Portfolio'
-import Links from './components/layouts/right/Links'
-import ContactMe from './components/layouts/right/ContactMe'
-import Error from './components/Error'
-import './Main.css'
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBriefcase, faHome, faGraduationCap, faLink, faEnvelopeOpen } from '@fortawesome/free-solid-svg-icons'
+
+// import LeftPane from './components/layouts/left/LeftPane'
+// import Home from './components/layouts/right/Home'
+// import AboutMe from './components/layouts/right/AboutMe'
+// import EduExpSkill from './components/layouts/right/EduExpSkill'
+// import Portfolio from './components/layouts/right/Portfolio'
+// import Links from './components/layouts/right/Links'
+// import ContactMe from './components/layouts/right/ContactMe'
+
+// import Error from './components/Error'
+import './Main.css'
+import './App.css';
+
 import Spinner from './components/UI/Spinner/Spinner'
 import MyContext from './store/MyContext'
+
+const LeftPane = lazy(() => import('./components/layouts/left/LeftPane'))
+const Home = lazy(() => import('./components/layouts/right/Home'))
+const AboutMe = lazy(() => import('./components/layouts/right/AboutMe'))
+const EduExpSkill = lazy(() => import('./components/layouts/right/EduExpSkill'))
+const Portfolio = lazy(() => import('./components/layouts/right/Portfolio'))
+const Links = lazy(() => import('./components/layouts/right/Links'))
+const ContactMe = lazy(() => import('./components/layouts/right/ContactMe'))
 
 const Main = () => {
     const { loading } = useContext(MyContext)
@@ -37,26 +47,28 @@ const Main = () => {
 
                         <div className="row">
                             <div className="col-lg-3 col-md-3 col-sm-12">
-                                <LeftPane />
+                                <Suspense fallback={<div>Loading...</div>}>
+                                    <LeftPane />
+                                </Suspense>
                             </div>
                             <div className="col-lg-9 col-md-9 col-sm-12">
                                 <div className="container" style={{ padding: '5px' }}>
                                     <div className="card" style={CardColor}>
                                         <div className="card-header app-header" style={CardhColor}>
                                             <Switch>
-                                                <Route exact path='/' component={Home} />
+                                                <Suspense fallback={<div>Loading...</div>}>
+                                                    <Route exact path='/' component={Home} />
 
-                                                <Route exact path="/about" component={AboutMe} />
+                                                    <Route exact path="/about" component={AboutMe} />
 
-                                                <Route exact path="/portfolio" component={Portfolio} />
+                                                    <Route path="/eduskill" component={EduExpSkill} />
 
-                                                <Route exact path="/links" component={Links} />
+                                                    <Route exact path="/portfolio" component={Portfolio} />
 
-                                                <Route exact path="/contact" component={ContactMe} />
+                                                    <Route exact path="/links" component={Links} />
 
-                                                <Route path="/eduskill" component={EduExpSkill} />
-
-                                                <Route component={Error} />
+                                                    <Route exact path="/contact" component={ContactMe} />
+                                                </Suspense>
                                             </Switch>
                                         </div>
                                     </div>

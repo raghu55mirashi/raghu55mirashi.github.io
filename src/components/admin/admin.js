@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import Login from './login/login'
 import DataEntry from './data_entry/data_entry'
-import { auth } from '../../firebase/firebase'
+import { auth } from '../../firebase/firebase';
+import {signInWithEmailAndPassword, onAuthStateChanged} from 'firebase/auth'
 
 class Admin extends Component {
     constructor() {
@@ -25,7 +26,7 @@ class Admin extends Component {
         const { email, password } = this.state
         if (email && password) {
             try {
-                await auth.signInWithEmailAndPassword(email, password)
+                await signInWithEmailAndPassword(auth, email, password)
                 this.setState({
                     email: '',
                     password: '',
@@ -46,7 +47,7 @@ class Admin extends Component {
     unsubscribeFromAuth = null
 
     componentDidMount() {
-        this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
+        this.unsubscribeFromAuth = onAuthStateChanged(auth, (user) => {
             this.setState({
                 currentUser: user
             })

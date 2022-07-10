@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { lazy, Suspense } from 'react'
 import { NavLink, HashRouter as Router, Route, Switch } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGraduationCap, faTasks, faStar } from '@fortawesome/free-solid-svg-icons'
-import Education from './Educ/Education'
-import Experience from './Educ/Experience'
-import Skills from './Educ/Skills'
+
+const Education = lazy(() => import('./Educ/Education'))
+const Experience = lazy(() => import('./Educ/Experience'))
+const Skills = lazy(() => import('./Educ/Skills'))
+// const Error = lazy(() => import('../../Error'))
 
 const EduExpSkill = ({ match }) => (
     <Router>
@@ -23,11 +25,13 @@ const EduExpSkill = ({ match }) => (
                 <div className="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                     <div className="can-education">
                         <Switch>
-                            <Route exact path={`${match.path}`} component={Education} />
+                            <Suspense fallback={<div>Loading...</div>}>
+                                <Route exact path={`${match.path}`} component={Education} />
 
-                            <Route exact path={`${match.path}/experience`} component={Experience} />
+                                <Route exact path={`${match.path}/experience`} component={Experience} />
 
-                            <Route exact path={`${match.path}/skills`} component={Skills} />
+                                <Route exact path={`${match.path}/skills`} component={Skills} />
+                            </Suspense>
                         </Switch>
                     </div>
                 </div>

@@ -1,8 +1,8 @@
-import firebase from 'firebase/app'
-import 'firebase/firestore'
-import 'firebase/storage'
-import 'firebase/database'
-import 'firebase/auth'
+import { initializeApp } from 'firebase/app'
+import { getStorage  } from 'firebase/storage'
+import { getFirestore  } from 'firebase/firestore'
+import { getAuth, GoogleAuthProvider, signInWithPopup  } from 'firebase/auth'
+import { getDatabase } from 'firebase/database'
 
 var firebaseConfig = {
     apiKey: "AIzaSyDyK-vS9oiCEIZ3xdau8O1SfPoXpTxmy_U",
@@ -14,21 +14,22 @@ var firebaseConfig = {
     appId: "1:402733075989:web:a38171fd1b9e7d3771881c",
     measurementId: "G-D4YKFYR3WD"
 };
+
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+const firebase = initializeApp(firebaseConfig);
 
-export const auth = firebase.auth()
+export const auth = getAuth(firebase)
+export const firestore = getFirestore(firebase)
+export const storage = getStorage(firebase)
+export const database = getDatabase(firebase)
 
-export const firestore = firebase.firestore()
-
-export const storage = firebase.storage()
-
-export const database = firebase.database()
-
-
-const provider = new firebase.auth.GoogleAuthProvider()
+const provider = new GoogleAuthProvider()
 provider.setCustomParameters({ prompt: 'select_account' })
 
-export const signInWithGoogle = () => auth.signInWithPopup(provider)
+export const signInWithGoogle = ()=> signInWithPopup(auth, provider).then(result =>{
+    // const credential = GoogleAuthProvider.credentialFromResult(result);
+    // const token = credential.accessToken;
+    // const user = result.user;
+})
 
 export default firebase;

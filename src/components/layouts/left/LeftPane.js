@@ -11,7 +11,7 @@ const LeftPane = () => {
                 <span key={id}>
                     <div className="card" style={{ border: 'unset' }}>
                         <div className="card-header" style={{ padding: 'unset', border: 'unset', backgroundColor: '#e9ecef' }}>
-                            <div className="leftPane-div">
+                            <div className="leftPane-div" style={{ width: "175px", margin: "0 auto" }}>
                                 {Personal[item].image
                                     ? <GetImageURL urlName={Personal[item].image} />
                                     : <img src={thumb} alt="no pics" className="rounded img-fluid" />
