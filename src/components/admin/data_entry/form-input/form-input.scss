@@ -1,0 +1,53 @@
+.formcontrol,
+.textarea {
+  color: #fff !important;
+  margin-bottom: 25px !important;
+  background-color: #283054 !important;
+  border: 1px solid #262e53 !important;
+}
+
+input[type='date'] {
+  border: none !important;
+  padding: 0 30px !important;
+}
+
+.editFormContrl {
+  padding: 5px;
+}
+
+.filecontrol {
+  color: #fff !important;
+  background-color: #283054 !important;
+  border: 1px solid #262e53 !important;
+}
+
+.custom-file-input {
+  height: unset !important;
+  opacity: 1 !important;
+  background-color: #fff !important;
+  width: 100%!important;
+}
+
+.custom-file-input:lang(en) ~ .custom-file-label::after {
+  content: unset !important;
+}
+
+.input-group-text {
+  color: #828a92 !important;
+  background-color: #262e53 !important;
+  border: none !important;
+}
+
+.custom-file-label {
+  background-color: #283054 !important;
+  border: unset !important;
+}
+
+.hide{
+  opacity: 0;
+  z-index: 999;
+}
+
+.custom-file{
+  width: 100%!important;
+}

@@ -1,0 +1,39 @@
+{
+  "Personal": [
+    "firstName",
+    "lastName",
+    "address",
+    "designation",
+    "email",
+    "phone",
+    "nationality",
+    "speakingLanguages",
+    "summary",
+    "blogUrl",
+    "latestTech",
+    "birthDate",
+    "resume",
+    "image"
+  ],
+  "Portfolio": [
+    "projectName",
+    "client",
+    "technology",
+    "description",
+    "duration",
+    "siteUrl",
+    "createdOn",
+    "image"
+  ],
+  "Education": ["course", "degree", "passYear", "university"],
+  "Experience": [
+    "company",
+    "designation",
+    "duration",
+    "summary",
+    "technology",
+    "joined"
+  ],
+  "Links": ["siteName", "siteUrl"],
+  "Skills": ["subject", "stars"]
+}
